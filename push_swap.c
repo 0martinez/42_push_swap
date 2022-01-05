@@ -44,7 +44,7 @@ static int  *to_stack(int argc, char **argv)
         stack[i] = ft_atoi(argv[j]);
 		if (!stack[i])
 			return (0);
-        printf("%d ", stack[i]);
+        //printf("%d ", stack[i]);
         i++;
         j++;
     }
@@ -63,32 +63,13 @@ static int	print_error(void)
 	write(1, "Error\n", 6);
 	return (0);
 }
-struct stacks	sort_5(stack_gen st)
-{
-	int	flg;
-	int	i;
-
-	flg = 0;
-	i = 0;
-	while (flg != slen)
-	{
-		flg = 0;
-		if (st.a[0] > st.a[1])
-		{
-			st.a = swap_a(st.a);
-
-		}
-		else
-		{
-
-		}
-	}
-}
-
 
 int	main(int argc, char **argv)
 {
 	stack_gen st;
+	int	i;
+
+	i = 0;
 	if (checker(argc, argv) == 0)
 		return (print_error());
 	st.a = to_stack(argc, argv);
@@ -96,7 +77,11 @@ int	main(int argc, char **argv)
 		return (print_error());
 	st.alen = argc - 1;
 	st.blen = 0;
-	if (st.alen <= 5)
-		st = sort_5(st);
+	st = swaps(st);
+	while (i < st.alen)
+	{
+		printf("<%d>", st.a[i]);
+		i++;
+	}
 	return (0);
 }

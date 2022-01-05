@@ -14,6 +14,7 @@ typedef struct stacks
 	int	alen;
 	int	blen;
 
+	int	its_ord;
 }	stack_gen;
 
 struct stacks	swap_a(stack_gen st);
@@ -37,5 +38,13 @@ struct stacks	reverse_a(stack_gen st);
 struct stacks	reverse_b(stack_gen st);
 
 struct stacks	reverse_ab(stack_gen st);
+
+struct stacks	swaps(stack_gen st);
+
+struct stacks	final_or(stack_gen st, int pos);
+
+int				position_b(stack_gen st);
+
+struct stacks	first_check_b(stack_gen st);
 
 #endif

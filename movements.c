@@ -191,6 +191,7 @@ struct stacks	reverse_ab(stack_gen st)
 	return (st);
 }
 
+/*
 int main (void)
 {
 	stack_gen st;
@@ -306,4 +307,4 @@ int main (void)
 		i++;
 	}
 	return (0);
-}
+}*/
