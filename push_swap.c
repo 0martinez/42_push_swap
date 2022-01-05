@@ -73,9 +73,9 @@ struct stacks	sort_5(stack_gen st)
 	while (flg != slen)
 	{
 		flg = 0;
-		if (stack_a[0] > stack_a[1])
+		if (st.a[0] > st.a[1])
 		{
-			stack_a = swap_a(stack_a);
+			st.a = swap_a(st.a);
 
 		}
 		else

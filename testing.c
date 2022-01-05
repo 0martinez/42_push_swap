@@ -32,11 +32,6 @@ int main (void)
         i++;
     }
     i = 0;
-    while (*st.c + i)
-    {
-        printf("%d", i);
-        i++;
-    }
     printf("+%d+", i);   
     st = ft_return(st);
     printf("%d %d", st.a, st.b);
