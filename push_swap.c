@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+
+#include "push_swap.h"
 
 int	ft_atoi(const char *str)
 {
@@ -22,13 +21,11 @@ int	ft_atoi(const char *str)
 		num = (num * 10) + (str[i] - '0');
 		i++;
 	}
-	if (str[i] < '0' && str[i] > '9')
-	{
-		printf("aaa");
+	if (str[i] != 0)
 		return 0;
-	}
 	return ((int )simb * num);
 }
+
 
 static int  *to_stack(int argc, char **argv)
 {
@@ -61,32 +58,45 @@ static int	checker(int argc, char **argv)
 	return 1;
 }
 
-static int	stack_len(int *stack)
-{
-	int	i;
-
-	i = 0;
-	if (!stack)
-		return (0);
-	while (stack[i] != 0)
-		i++;
-	return (i);
-}
-
 static int	print_error(void)
 {
 	write(1, "Error\n", 6);
 	return (0);
 }
+struct stacks	sort_5(stack_gen st)
+{
+	int	flg;
+	int	i;
+
+	flg = 0;
+	i = 0;
+	while (flg != slen)
+	{
+		flg = 0;
+		if (stack_a[0] > stack_a[1])
+		{
+			stack_a = swap_a(stack_a);
+
+		}
+		else
+		{
+
+		}
+	}
+}
+
 
 int	main(int argc, char **argv)
 {
-	int *stack;
-	int *new_stack;
+	stack_gen st;
 	if (checker(argc, argv) == 0)
 		return (print_error());
-	stack = to_stack(argc, argv);
-	if (!stack)
+	st.a = to_stack(argc, argv);
+	if (!st.a)
 		return (print_error());
+	st.alen = argc - 1;
+	st.blen = 0;
+	if (st.alen <= 5)
+		st = sort_5(st);
 	return (0);
 }
