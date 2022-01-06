@@ -19,6 +19,8 @@ typedef struct stacks
 
 }	stack_gen;
 
+static int atoi_checker;
+
 struct stacks	swap_a(stack_gen st);
 
 struct stacks	swap_b(stack_gen st);
@@ -43,7 +45,7 @@ struct stacks	reverse_ab(stack_gen st);
 
 struct stacks	swaps(stack_gen st);
 
-struct stacks	final_or(stack_gen st, int pos);
+struct stacks	final_or(stack_gen st);
 
 int				position_b(stack_gen st);
 

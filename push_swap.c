@@ -22,7 +22,10 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	if (str[i] != 0)
-		return 0;
+	{
+		atoi_checker = 1;
+		return (0);
+	}
 	return ((int )simb * num);
 }
 
@@ -37,12 +40,15 @@ static int  *to_stack(int argc, char **argv)
     j = 1;
     stack = (int *) malloc(sizeof(int) * argc);
     if (!stack)
-        return (0);
+	{
+		atoi_checker = 1;
+		return (0);
+	}
     stack[argc] = 0;
     while (i < argc - 1)
     {
         stack[i] = ft_atoi(argv[j]);
-		if (!stack[i])
+		if (atoi_checker == 1)
 			return (0);
         //printf("%d ", stack[i]);
         i++;
@@ -71,10 +77,11 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	st.mvs = 0;
+	atoi_checker = 0;
 	if (checker(argc, argv) == 0)
 		return (print_error());
 	st.a = to_stack(argc, argv);
-	if (!st.a)
+	if (atoi_checker == 1)
 		return (print_error());
 	st.alen = argc - 1;
 	st.blen = 0;

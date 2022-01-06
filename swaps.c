@@ -1,5 +1,26 @@
 #include "push_swap.h"
 
+struct stacks	check_if_ordered(stack_gen st)
+{
+	int	i;
+	int flg;
+
+	i = 0;
+	flg = 0;
+	if (st.blen == 1)
+		return (st);
+	while (i + 1 < st.blen)
+	{
+		if (st.b[i] > st.b[i + 1])
+			flg++;
+		i++;
+	}
+	st.its_ord = 0;
+	if (flg == st.blen - 1)
+		st.its_ord = 1;
+	return (st);
+}
+
 struct stacks	first_check_b(stack_gen st)
 {
 	int	i;
@@ -9,7 +30,8 @@ struct stacks	first_check_b(stack_gen st)
 	j = 1;
 	i = 0;
 	flg = 0;
-	if (st.blen == 0 || st.blen == 1)
+	st = check_if_ordered(st);
+	if (st.blen == 1 || st.its_ord == 1)
 		return (st);
 	if (st.blen == 2)
 	{
@@ -17,44 +39,36 @@ struct stacks	first_check_b(stack_gen st)
 			st = swap_b(st);
 		return (st);
 	}
-	while (j <= st.blen - 1)
+	if (st.blen == 3 && st.b[0] < st.b[1])
 	{
-		if (st.b[i] > st.b[j])
-			flg++;
-		i++;
-		j++;
+		st = swap_b(st);
+		return (st);
 	}
-	printf("%d", flg);
-	if (flg == st.blen - 1)
-		st.its_ord = 1;
-	else
-		st.its_ord = 0;
 	return (st);
 }
 
 int	position_b(stack_gen st)
 {
 	int	i;
-	int	j;
 
 	if (st.blen == 0 || st.blen == 1)
 		return (0);
 	i = 0;
-	j = 1;
-	while (st.b[i] > st.b[j] && j < st.blen)
-	{
+	while (st.b[st.blen - 1] < st.b[i])
 		i++;
-		j++;
-	}
-	return (j);
+	return (i);
 }
 
-struct stacks	final_or(stack_gen st, int pos)
+struct stacks	final_or(stack_gen st)
 {
 	int	i;
+	int	pos;
 
 	i = 0;
 	st = rotate_b(st);
+	st = check_if_ordered(st);
+	if (st.its_ord == 1)
+		return (st);
 	if (st.blen == 1 || st.blen == 2)
 	{
 		if (st.blen == 0 && st.b[0] < st.b[1])
@@ -63,14 +77,16 @@ struct stacks	final_or(stack_gen st, int pos)
 	}
 	else
 	{
-		while (i <= pos)
+		pos = position_b(st);
+		//printf("position value = %d || blen = %d\n", pos, st.blen);
+		while (i < pos)
 		{
 			st = push_a(st);
 			i++;
 		}
 		st = reverse_b(st);
 		i = 0;
-		while (i <= pos)
+		while (i < pos)
 		{
 			st = push_b(st);
 			i++;
@@ -93,6 +109,7 @@ struct stacks	swaps(stack_gen st)
 	i = 0;
 	while (st.blen != brk && st.alen != 0)
 	{
+		//printf("\nINIT_PROCESS\n");
 		if (st.a[0] > st.a[1])
 		{
 			st = swap_a(st);
@@ -100,20 +117,21 @@ struct stacks	swaps(stack_gen st)
 		}
 		else
 			st = push_b(st);
-		st.its_ord = 0;
+		//printf("\nPRE_CHECK\n");
 		st = first_check_b(st);
+		//printf("\nPOST_CHECK\n");
+		st = check_if_ordered(st);
 		if (st.its_ord == 0)
 		{
-			pos = position_b(st);
-			st = final_or(st, pos);
+			//pos = position_b(st);
+			st = final_or(st);
 		}	
 		if (st.alen == 1)
 			st = push_b(st);
+		//printf("\nEND_PROCESS\n");
 	}
-	printf("-------");
+	printf("-------\n");
 	while (st.alen != brk)
-	{
 		st = push_a(st);
-	}
 	return (st);
 }
