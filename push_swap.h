@@ -15,6 +15,8 @@ typedef struct stacks
 	int	blen;
 
 	int	its_ord;
+	int	mvs;
+
 }	stack_gen;
 
 struct stacks	swap_a(stack_gen st);

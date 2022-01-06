@@ -55,20 +55,30 @@ struct stacks	final_or(stack_gen st, int pos)
 
 	i = 0;
 	st = rotate_b(st);
-	while (i <= pos)
+	if (st.blen == 1 || st.blen == 2)
 	{
-		st = push_a(st);
-		i++;
+		if (st.blen == 0 && st.b[0] < st.b[1])
+			st = swap_b(st);
+		return (st);
 	}
-	st = rotate_b(st);
-	i = 0;
-	while (i < pos)
+	else
 	{
-		st = push_b(st);
-		i++;
+		while (i <= pos)
+		{
+			st = push_a(st);
+			i++;
+		}
+		st = reverse_b(st);
+		i = 0;
+		while (i <= pos)
+		{
+			st = push_b(st);
+			i++;
+		}
+		st.its_ord = 1;
+		return (st);	
 	}
-	st.its_ord = 1;
-	return (st);
+	
 }
 
 struct stacks	swaps(stack_gen st)
@@ -81,31 +91,26 @@ struct stacks	swaps(stack_gen st)
 	brk = st.alen;
 	flg = 0;
 	i = 0;
-	while (st.blen != brk)
+	while (st.blen != brk && st.alen != 0)
 	{
-		if (st.alen > 1)
+		if (st.a[0] > st.a[1])
 		{
-			if (st.a[0] > st.a[1])
-			{
-				st = swap_a(st);
-				st = push_b(st);
-			}
-			else
-				st = push_b(st);
-			st.its_ord = 0;
-			st = first_check_b(st);
-			break;
-			if (st.its_ord == 0)
-			{
-				pos = position_b(st);
-				st = final_or(st, pos);
-			}	
+			st = swap_a(st);
+			st = push_b(st);
 		}
+		else
+			st = push_b(st);
+		st.its_ord = 0;
+		st = first_check_b(st);
+		if (st.its_ord == 0)
+		{
+			pos = position_b(st);
+			st = final_or(st, pos);
+		}	
 		if (st.alen == 1)
 			st = push_b(st);
-		
 	}
-	printf("bbbbbb");
+	printf("-------");
 	while (st.alen != brk)
 	{
 		st = push_a(st);

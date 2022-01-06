@@ -9,6 +9,8 @@ struct stacks	swap_a(stack_gen st)
 	aux = st.a[0];
 	st.a[0] = st.a[1];
 	st.a[1] = aux;
+	st.mvs++;
+	printf("\nsa\n");
 	return (st);
 }
 
@@ -21,6 +23,8 @@ struct stacks	swap_b(stack_gen st)
 	aux = st.b[0];
 	st.b[0] = st.b[1];
 	st.b[1] = aux;
+	st.mvs++;
+	printf("\nsb\n");
 	return (st);
 }
 
@@ -28,6 +32,7 @@ struct stacks	swap_ab(stack_gen st)
 {
 	st = swap_a(st);
 	st = swap_b(st);
+	st.mvs++;
 	return (st);
 }
 
@@ -67,6 +72,8 @@ struct stacks	push_a(stack_gen st)
 	}
 	free(st.a);
 	st.a = new_a;
+	st.mvs++;
+	printf("\npa\n");
 	return (st);
 }
 
@@ -106,6 +113,8 @@ struct stacks push_b(stack_gen st)
 	}
 	free(st.b);
 	st.b = new_b;
+	st.mvs++;
+	printf("\npb\n");
 	return (st);
 }
 
@@ -123,6 +132,8 @@ struct stacks	rotate_a(stack_gen st)
 		i++;
 	}
 	st.a[i] = aux;
+	st.mvs++;
+	printf("\nra\n");
 	return (st);
 }
 
@@ -132,6 +143,8 @@ struct stacks	rotate_b(stack_gen st)
 	int	i;
 
 	i = 0;
+	if (st.blen == 0 || st.blen == 1 || st.blen == 2)
+		return (st);
 	aux = st.b[0];
 	while (i < st.blen - 1)
 	{
@@ -139,6 +152,8 @@ struct stacks	rotate_b(stack_gen st)
 		i++;
 	}
 	st.b[i] = aux;
+	st.mvs++;
+	printf("\nrb\n");
 	return (st);
 }
 
@@ -146,6 +161,8 @@ struct stacks	rotate_ab(stack_gen st)
 {
 	st = rotate_a(st);
 	st = rotate_b(st);
+	st.mvs++;
+	printf("\nrr\n");
 	return (st);
 }
 
@@ -164,6 +181,8 @@ struct stacks	reverse_a(stack_gen st)
 		i--;
 	}
 	st.a[0] = aux;
+	st.mvs++;
+	printf("\nrra\n");
 	return (st);
 }
 
@@ -181,6 +200,8 @@ struct stacks	reverse_b(stack_gen st)
 		i--;
 	}
 	st.b[0] = aux;
+	st.mvs++;
+	printf("\nrrb\n");
 	return (st);
 }
 
@@ -188,6 +209,7 @@ struct stacks	reverse_ab(stack_gen st)
 {
 	st = reverse_a(st);
 	st = reverse_b(st);
+	st.mvs++;
 	return (st);
 }
 

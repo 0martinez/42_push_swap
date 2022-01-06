@@ -70,6 +70,7 @@ int	main(int argc, char **argv)
 	int	i;
 
 	i = 0;
+	st.mvs = 0;
 	if (checker(argc, argv) == 0)
 		return (print_error());
 	st.a = to_stack(argc, argv);
@@ -83,5 +84,6 @@ int	main(int argc, char **argv)
 		printf("<%d>", st.a[i]);
 		i++;
 	}
+	printf("%d", st.mvs);
 	return (0);
 }
