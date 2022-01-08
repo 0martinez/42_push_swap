@@ -19,7 +19,7 @@ typedef struct stacks
 
 }	stack_gen;
 
-static int atoi_checker;
+int atoi_checker;
 
 struct stacks	swap_a(stack_gen st);
 

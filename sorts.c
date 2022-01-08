@@ -21,6 +21,27 @@ struct stacks	check_if_ordered(stack_gen st)
 	return (st);
 }
 
+struct stacks	check_a(stack_gen st)
+{
+	int	i;
+	int	flg;
+
+	i = 0;
+	flg = 0;
+	if (st.alen == 1)
+		return (st);
+	while (i + 1 < st.alen)
+	{
+		if (st.a[i] > st.a[i + 1])
+			flg++;
+		i++;
+	}
+	st.its_ord = 0;
+	if (flg == st.alen)
+		st.its_ord = 1;
+	return (st);
+}
+
 struct stacks	first_check_b(stack_gen st)
 {
 	int	i;
@@ -41,7 +62,10 @@ struct stacks	first_check_b(stack_gen st)
 	}
 	if (st.blen == 3 && st.b[0] < st.b[1])
 	{
-		st = swap_b(st);
+		if (st.b[0] < st.b[2])
+			st = rotate_b(st);
+		else
+			st = swap_b(st);
 		return (st);
 	}
 	return (st);
@@ -109,7 +133,7 @@ struct stacks	swaps(stack_gen st)
 	i = 0;
 	while (st.blen != brk && st.alen != 0)
 	{
-		//printf("\nINIT_PROCESS\n");
+		printf("\nINIT_PROCESS\n");
 		if (st.a[0] > st.a[1])
 		{
 			st = swap_a(st);
@@ -128,7 +152,7 @@ struct stacks	swaps(stack_gen st)
 		}	
 		if (st.alen == 1)
 			st = push_b(st);
-		//printf("\nEND_PROCESS\n");
+		printf("\nEND_PROCESS\n");
 	}
 	printf("-------\n");
 	while (st.alen != brk)
