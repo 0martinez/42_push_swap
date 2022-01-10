@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorts.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/10 12:23:48 by omartine          #+#    #+#             */
+/*   Updated: 2022/01/10 13:01:52 by omartine         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 struct stacks	check_if_ordered(stack_gen st)
 {
 	int	i;
-	int flg;
+	int	flg;
 
 	i = 0;
 	flg = 0;
@@ -32,12 +44,12 @@ struct stacks	check_a(stack_gen st)
 		return (st);
 	while (i + 1 < st.alen)
 	{
-		if (st.a[i] > st.a[i + 1])
+		if (st.a[i] < st.a[i + 1])
 			flg++;
 		i++;
 	}
 	st.its_ord = 0;
-	if (flg == st.alen)
+	if (flg == st.alen - 1)
 		st.its_ord = 1;
 	return (st);
 }
@@ -47,7 +59,7 @@ struct stacks	first_check_b(stack_gen st)
 	int	i;
 	int	j;
 	int	flg;
-	
+
 	j = 1;
 	i = 0;
 	flg = 0;
@@ -116,9 +128,8 @@ struct stacks	final_or(stack_gen st)
 			i++;
 		}
 		st.its_ord = 1;
-		return (st);	
+		return (st);
 	}
-	
 }
 
 struct stacks	swaps(stack_gen st)
@@ -133,28 +144,32 @@ struct stacks	swaps(stack_gen st)
 	i = 0;
 	while (st.blen != brk && st.alen != 0)
 	{
-		printf("\nINIT_PROCESS\n");
+		//printf("\nINIT_PROCESS\n");
+		st = check_a(st);
+		if (st.its_ord == 1)
+			break ;
 		if (st.a[0] > st.a[1])
 		{
 			st = swap_a(st);
+			st = check_a(st);
+			if (st.its_ord == 1 && st.a[0] > st.b[0])
+				break ;
 			st = push_b(st);
 		}
 		else
 			st = push_b(st);
-		//printf("\nPRE_CHECK\n");
 		st = first_check_b(st);
-		//printf("\nPOST_CHECK\n");
 		st = check_if_ordered(st);
 		if (st.its_ord == 0)
 		{
 			//pos = position_b(st);
 			st = final_or(st);
-		}	
+		}
 		if (st.alen == 1)
-			st = push_b(st);
-		printf("\nEND_PROCESS\n");
+			break ;
+		//printf("\nEND_PROCESS\n");
 	}
-	printf("-------\n");
+	//printf("-------\n");
 	while (st.alen != brk)
 		st = push_a(st);
 	return (st);

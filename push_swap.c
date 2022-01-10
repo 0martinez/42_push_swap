@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
+/*   Updated: 2022/01/10 16:11:10 by omartine         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
 int	ft_atoi(const char *str)
 {
-	int	simb;
+	int				simb;
 	unsigned long	num;
-	int	i;
+	int				i;
 
 	i = 0;
 	num = 0;
@@ -29,39 +40,38 @@ int	ft_atoi(const char *str)
 	return ((int )simb * num);
 }
 
-
-static int  *to_stack(int argc, char **argv)
+static int	*to_stack(int argc, char **argv)
 {
-    int *stack;
-    int i;
-    int j;
+	int *stack;
+	int i;
+	int j;
 
-    i = 0;
-    j = 1;
+	i = 0;
+	j = 1;
     stack = (int *) malloc(sizeof(int) * argc);
-    if (!stack)
+	if (!stack)
 	{
 		atoi_checker = 1;
 		return (0);
 	}
-    stack[argc] = 0;
-    while (i < argc - 1)
-    {
-        stack[i] = ft_atoi(argv[j]);
+	stack[argc] = 0;
+	while (i < argc - 1)
+	{
+		stack[i] = ft_atoi(argv[j]);
 		if (atoi_checker == 1)
 			return (0);
-        //printf("%d ", stack[i]);
-        i++;
-        j++;
-    }
-    return (stack);
+		//printf("%d ", stack[i]);
+		i++;
+		j++;
+	}
+	return (stack);
 }
 
 static int	checker(int argc, char **argv)
 {
 	if (argc == 1)
 		return (0);
-	return 1;
+	return (1);
 }
 
 static int	print_error(void)
@@ -70,10 +80,15 @@ static int	print_error(void)
 	return (0);
 }
 
+void leaks()
+{
+	system("leaks -q a.out");
+}
+
 int	main(int argc, char **argv)
 {
-	stack_gen st;
-	int	i;
+	stack_gen	st;
+	int			i;
 
 	i = 0;
 	st.mvs = 0;
@@ -85,12 +100,16 @@ int	main(int argc, char **argv)
 		return (print_error());
 	st.alen = argc - 1;
 	st.blen = 0;
-	st = swaps(st);
+	//st = swaps(st);
+	st = new_sort(st);
 	while (i < st.alen)
 	{
 		printf("<%d>", st.a[i]);
 		i++;
 	}
+	free(st.a);
+	free(st.b);
 	printf("%d", st.mvs);
+	atexit(leaks);
 	return (0);
 }

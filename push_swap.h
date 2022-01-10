@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
+/*   Updated: 2022/01/10 18:06:37 by omartine         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
 
 # include <stdio.h>
 # include <unistd.h>
@@ -16,6 +26,10 @@ typedef struct stacks
 
 	int	its_ord;
 	int	mvs;
+
+	int	reference;
+	int	reference_pos;
+	int	last_reference_pos;
 
 }	stack_gen;
 
@@ -50,5 +64,7 @@ struct stacks	final_or(stack_gen st);
 int				position_b(stack_gen st);
 
 struct stacks	first_check_b(stack_gen st);
+
+struct stacks	new_sort(stack_gen st);
 
 #endif
