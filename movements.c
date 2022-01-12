@@ -32,9 +32,8 @@ struct stacks	swap_a(stack_gen st)
 struct stacks	swap_b(stack_gen st)
 {
 	int	aux;
-	int i;
 
-	if (st.blen == 0 ||st.blen == 1)
+	if (st.blen == 0 || st.blen == 1)
 		return (st);
 	aux = st.b[0];
 	st.b[0] = st.b[1];

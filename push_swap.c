@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/12 17:37:01 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/12 18:49:05 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	*to_stack(int argc, char **argv)
 	return (stack);
 }
 
-static int	checker(int argc, char **argv)
+static int	checker(int argc)
 {
 	if (argc == 1)
 		return (0);
@@ -94,7 +94,7 @@ int	main(int argc, char **argv)
 	st.mvs = 0;
 	st.error = 0;
 	atoi_checker = 0;
-	if (checker(argc, argv) == 0)
+	if (checker(argc) == 0)
 		return (print_error());
 	st.a = to_stack(argc, argv);
 	if (atoi_checker == 1)
@@ -102,12 +102,7 @@ int	main(int argc, char **argv)
 	st.alen = argc - 1;
 	st.blen = 0;
 	//st = swaps(st);
-	if (st.alen <= 3)
-		st = sort_manager(st);
-	else if (st.alen <= 100)
-		st = sort_manager(st);
-	else
-		st = sort_manager(st);
+	st = sort_manager(st);
 	if (st.error == 1)
 		return (print_error());
 	printf("\n\n\n");
