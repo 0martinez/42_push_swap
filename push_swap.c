@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/10 16:11:10 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/12 17:37:01 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	ft_atoi(const char *str)
 
 static int	*to_stack(int argc, char **argv)
 {
-	int *stack;
-	int i;
-	int j;
+	int	*stack;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 1;
-    stack = (int *) malloc(sizeof(int) * argc);
+	stack = (int *) malloc(sizeof(int) * argc);
 	if (!stack)
 	{
 		atoi_checker = 1;
@@ -92,6 +92,7 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	st.mvs = 0;
+	st.error = 0;
 	atoi_checker = 0;
 	if (checker(argc, argv) == 0)
 		return (print_error());
@@ -101,15 +102,25 @@ int	main(int argc, char **argv)
 	st.alen = argc - 1;
 	st.blen = 0;
 	//st = swaps(st);
-	st = new_sort(st);
+	if (st.alen <= 3)
+		st = sort_manager(st);
+	else if (st.alen <= 100)
+		st = sort_manager(st);
+	else
+		st = sort_manager(st);
+	if (st.error == 1)
+		return (print_error());
+	printf("\n\n\n");
 	while (i < st.alen)
 	{
 		printf("<%d>", st.a[i]);
 		i++;
 	}
+	printf("%d", st.mvs);
 	free(st.a);
 	free(st.b);
-	printf("%d", st.mvs);
+	free(st.c);
+	//printf("%d", st.mvs);
 	atexit(leaks);
 	return (0);
 }

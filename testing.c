@@ -15,7 +15,7 @@ struct testing ft_return(testeo a)
     return (a);
 }
 
-
+/*
 int main (void)
 {
     testeo st;
@@ -32,8 +32,17 @@ int main (void)
         i++;
     }
     i = 0;
-    printf("+%d+", i);   
+    printf("+%d+", i);
     st = ft_return(st);
     printf("%d %d", st.a, st.b);
     return 0;
+}*/
+
+int	main(void)
+{
+	int	i;
+
+	i = 0;
+	printf("%d", 3 / 2);
+	return (0);
 }

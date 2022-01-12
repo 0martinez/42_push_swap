@@ -11,7 +11,7 @@ struct stacks	swap_a(stack_gen st)
 	st.a[0] = st.a[1];
 	st.a[1] = aux;
 	st.mvs++;
-	/*printf("sa ");
+	printf("sa ");
 	i = 0;
 	while (i < st.alen)
 	{
@@ -25,7 +25,7 @@ struct stacks	swap_a(stack_gen st)
 		printf("(%d)", st.b[i]);
 		i++;
 	}
-	printf("\n");*/
+	printf("\n");
 	return (st);
 }
 
@@ -103,7 +103,7 @@ struct stacks	push_a(stack_gen st)
 	free(st.a);
 	st.a = new_a;
 	st.mvs++;
-	/*printf("pa ");
+	printf("pa ");
 	i = 0;
 	while (i < st.alen)
 	{
@@ -117,11 +117,11 @@ struct stacks	push_a(stack_gen st)
 		printf("(%d)", st.b[i]);
 		i++;
 	}
-	printf("\n");*/
+	printf("\n");
 	return (st);
 }
 
-struct stacks push_b(stack_gen st)
+struct stacks	push_b(stack_gen st)
 {
 	int	i;
 	int	j;
@@ -155,10 +155,16 @@ struct stacks push_b(stack_gen st)
 		i++;
 		j++;
 	}
-	free(st.b);
+	if (st.blen == 1)
+		st.b = new_b;
+	else
+	{
+		free(st.b);
+		st.b = new_b;
+	}
 	st.b = new_b;
 	st.mvs++;
-	/*printf("pb ");
+	printf("pb ");
 	i = 0;
 	while (i < st.alen)
 	{
@@ -172,9 +178,11 @@ struct stacks push_b(stack_gen st)
 		printf("(%d)", st.b[i]);
 		i++;
 	}
-	printf("\n");*/
+	printf("\n");
 	return (st);
 }
+
+
 
 struct stacks	rotate_a(stack_gen st)
 {
@@ -191,7 +199,7 @@ struct stacks	rotate_a(stack_gen st)
 	}
 	st.a[i] = aux;
 	st.mvs++;
-	/*printf("ra ");
+	printf("ra ");
 	i = 0;
 	while (i < st.alen)
 	{
@@ -205,7 +213,7 @@ struct stacks	rotate_a(stack_gen st)
 		printf("(%d)", st.b[i]);
 		i++;
 	}
-	printf("\n");*/
+	printf("\n");
 	return (st);
 }
 
@@ -225,7 +233,7 @@ struct stacks	rotate_b(stack_gen st)
 	}
 	st.b[i] = aux;
 	st.mvs++;
-	/*printf("rb ");
+	printf("rb ");
 	i = 0;
 	while (i < st.alen)
 	{
@@ -239,9 +247,10 @@ struct stacks	rotate_b(stack_gen st)
 		printf("(%d)", st.b[i]);
 		i++;
 	}
-	printf("\n");*/
+	printf("\n");
 	return (st);
 }
+
 
 struct stacks	rotate_ab(stack_gen st)
 {
@@ -301,7 +310,7 @@ struct stacks	reverse_b(stack_gen st)
 	}
 	st.b[0] = aux;
 	st.mvs++;
-	/*printf("rrb ");
+	printf("rrb ");
 	i = 0;
 	while (i < st.alen)
 	{
@@ -315,7 +324,7 @@ struct stacks	reverse_b(stack_gen st)
 		printf("(%d)", st.b[i]);
 		i++;
 	}
-	printf("\n");*/
+	printf("\n");
 	return (st);
 }
 
@@ -442,5 +451,22 @@ int main (void)
 		printf("<%d>", st.a[i]);
 		i++;
 	}
+	return (0);
+}*/
+
+/*
+int main(void)
+{
+	stack_gen	st;
+
+	st.alen = 3;
+	st.blen = 0;
+	st.mvs = 0;
+	st.a = malloc (sizeof(int) * 3);
+	st.a[0] = 1;
+	st.a[1] = 2;
+	st.a[2] = 3;
+
+	st = push_b(st);
 	return (0);
 }*/
