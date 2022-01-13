@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/13 16:45:47 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:36:19 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,6 @@ int	main(int argc, char **argv)
 	}
 	print_stack(st);
 	st = free_management(st);
-	atexit(leaks);
+	//atexit(leaks);
 	return (0);
 }
