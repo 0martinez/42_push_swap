@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_sort_100.c                                     :+:      :+:    :+:   */
+/*   sort_management.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:23:20 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/12 18:54:00 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/13 17:40:27 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ struct stacks	asign_c(stack_gen st)
 	st.c = (int *) malloc(sizeof(int) * st.alen);
 	if (!st.c)
 	{
-		st.error = 1;
+		st.error = 3;
 		return (st);
 	}
 	while (i < st.alen)
@@ -65,12 +65,10 @@ struct stacks	asign_c(stack_gen st)
 		i++;
 	}
 	st = sort_100(st);
-	if (st.error == 1)
-		return (st);
 	return (st);
 }
 
-int	check_if_lower_than_middle(stack_gen st, int middle, int aux)
+int	check_if_lower_than_middle(stack_gen st, int middle)
 {
 	int	i;
 
@@ -86,30 +84,36 @@ int	check_if_lower_than_middle(stack_gen st, int middle, int aux)
 
 struct stacks	push_all_b(stack_gen st)
 {
-	int	i;
 	int	aux;
 	int	middle;
 
-	i = 0;
+	/*if (check_if_a_ordered(st) == 0)
+	{
+		st.error = 10;
+		return (st);
+	}*/
 	if (st.alen % 2 == 0)
-		aux = (st.clen / 2) - 1;
+			aux = (st.clen / 2) - 1;
 	else
-		aux = st.clen / 2;
+			aux = st.clen / 2;
 	middle = st.c[aux];
 	while (st.alen != 2)
 	{
-		//printf("aux = %d---middle = %d ", aux, middle);
-		while (check_if_lower_than_middle(st, middle, aux) != 0 && st.alen != 2)
+		while (check_if_lower_than_middle(st, middle) != 0 && st.alen != 2)
 		{
+			printf("middle = %d\n", middle);
 			if (st.a[0] <= middle)
 				st = push_b(st);
 			else
 				st = rotate_a(st);
+			printf("check = %d\n", check_if_a_ordered(st));
+			if (check_if_a_ordered(st) == 0)
+				return (st);
 		}
 		if (st.alen % 2 == 0)
-			aux += (st.alen / 2) - 1;
+			aux = (st.clen / 2) - 1;
 		else
-			aux += st.alen / 2;
+			aux = st.clen / 2;
 		middle = st.c[aux];
 	}
 	if (st.a[0] > st.a[1])
@@ -132,8 +136,14 @@ struct stacks	push_all_a(stack_gen st)
 	int	i;
 	int	num_to_push;
 
-	i = (st.clen - 1) - 2;
-	while (st.blen != 2)
+	i = (st.clen - 1) - st.alen;
+	printf("||||%d||||", i);
+	printf("&%d&", st.error);
+	st.error = 7;
+	return (st);
+	if (i < 0)
+		return (st);
+	while (st.blen > 2)
 	{
 		num_to_push = st.c[i];
 		if (search_num_in_b(st, num_to_push) > st.blen / 2)
@@ -142,6 +152,7 @@ struct stacks	push_all_a(stack_gen st)
 					st = reverse_b(st);
 		}
 		else
+		{
 			while (st.b[0] != num_to_push)
 			{
 				if (st.b[1] == num_to_push)
@@ -149,15 +160,14 @@ struct stacks	push_all_a(stack_gen st)
 				else
 					st = rotate_b(st);
 			}
+		}
 		st = push_a(st);
-		printf("\n\n");
-		//getchar();
 		i--;
 	}
-	if (st.b[0] < st.b[1])
+	if (st.b[0] < st.b[1] && st.blen == 2)
 		st = swap_b(st);
-	st = push_a(st);
-	st = push_a(st);
+	while (st.blen != 0)
+		st = push_a(st);
 	return (st);
 }
 
@@ -202,17 +212,19 @@ struct stacks	sort_manager(stack_gen st)
 
 	i = 0;
 	st = asign_c(st);
+	if (st.error != 0)
+		return (st);
 	if (st.alen <= 3)
 	{
 		st = sort_3(st);
 		return (st);
 	}
-	else if (st.alen <= 100)
+	else if (st.alen <= 600)
 	{
 		st = push_all_b(st);
 		st = push_all_a(st);
 	}
-	if (st.error == 1)
+	if (st.error != 0)
 		return (st);
 	while (i < st.alen)
 	{

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "push_swap.h"
 
 typedef struct testing
 {
@@ -38,11 +39,23 @@ int main (void)
     return 0;
 }*/
 
-int	main(void)
+int	asdd(stack_gen *st)
 {
 	int	i;
 
 	i = 0;
-	printf("%d", 3 / 2);
+	st->error = 1;
+	return (i);
+}
+
+int	main(void)
+{
+	int			i;
+	stack_gen	st;
+
+	st.error = 0;
+	i = 0;
+	i = asdd(&st);
+	printf("%d", st.error);
 	return (0);
 }

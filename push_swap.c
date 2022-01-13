@@ -6,13 +6,31 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/12 18:49:05 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:45:47 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+static int	checker(int argc)
+{
+	if (argc == 1)
+		return (0);
+	return (1);
+}
+
+static int	print_error(void)
+{
+	write(1, "Error\n", 6);
+	return (0);
+}
+
+void	leaks(void)
+{
+	system("leaks -q a.out");
+}
+
+int	ft_atoi(const char *str, stack_gen *st)
 {
 	int				simb;
 	unsigned long	num;
@@ -32,15 +50,16 @@ int	ft_atoi(const char *str)
 		num = (num * 10) + (str[i] - '0');
 		i++;
 	}
-	if (str[i] != 0)
+	num = simb * num;
+	if (str[i] != 0 || num > 2147483647 || num < 0)
 	{
-		atoi_checker = 1;
+		st->error = 2;
 		return (0);
 	}
-	return ((int )simb * num);
+	return ((int )num);
 }
 
-static int	*to_stack(int argc, char **argv)
+static int	*to_stack(int argc, char **argv, stack_gen *st)
 {
 	int	*stack;
 	int	i;
@@ -51,14 +70,14 @@ static int	*to_stack(int argc, char **argv)
 	stack = (int *) malloc(sizeof(int) * argc);
 	if (!stack)
 	{
-		atoi_checker = 1;
+		st->error = 1;
 		return (0);
 	}
 	stack[argc] = 0;
 	while (i < argc - 1)
 	{
-		stack[i] = ft_atoi(argv[j]);
-		if (atoi_checker == 1)
+		stack[i] = ft_atoi(argv[j], st);
+		if (st->error == 2)
 			return (0);
 		//printf("%d ", stack[i]);
 		i++;
@@ -67,44 +86,11 @@ static int	*to_stack(int argc, char **argv)
 	return (stack);
 }
 
-static int	checker(int argc)
+void	print_stack(stack_gen st)
 {
-	if (argc == 1)
-		return (0);
-	return (1);
-}
-
-static int	print_error(void)
-{
-	write(1, "Error\n", 6);
-	return (0);
-}
-
-void leaks()
-{
-	system("leaks -q a.out");
-}
-
-int	main(int argc, char **argv)
-{
-	stack_gen	st;
-	int			i;
+	int	i;
 
 	i = 0;
-	st.mvs = 0;
-	st.error = 0;
-	atoi_checker = 0;
-	if (checker(argc) == 0)
-		return (print_error());
-	st.a = to_stack(argc, argv);
-	if (atoi_checker == 1)
-		return (print_error());
-	st.alen = argc - 1;
-	st.blen = 0;
-	//st = swaps(st);
-	st = sort_manager(st);
-	if (st.error == 1)
-		return (print_error());
 	printf("\n\n\n");
 	while (i < st.alen)
 	{
@@ -112,10 +98,41 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	printf("%d", st.mvs);
-	free(st.a);
-	free(st.b);
-	free(st.c);
-	//printf("%d", st.mvs);
+}
+
+struct stacks	init_stack(int argc)
+{
+	stack_gen	st;
+
+	st.mvs = 0;
+	st.error = 0;
+	st.alen = argc - 1;
+	st.blen = 0;
+	st.pos_if_ordered = 2;
+	return (st);
+}
+
+int	main(int argc, char **argv)
+{
+	stack_gen	st;
+
+	st = init_stack(argc);
+	if (checker(argc) == 0)
+		return (print_error());
+	st.a = to_stack(argc, argv, &st);
+	if (st.error != 0)
+	{
+		st = free_management(st);
+		return (print_error());
+	}
+	st = sort_manager(st);
+	if (st.error != 0 && st.error != 10)
+	{
+		st = free_management(st);
+		return (print_error());
+	}
+	print_stack(st);
+	st = free_management(st);
 	atexit(leaks);
 	return (0);
 }

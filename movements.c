@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movements.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/13 13:00:04 by omartine          #+#    #+#             */
+/*   Updated: 2022/01/13 16:41:00 by omartine         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 struct stacks	swap_a(stack_gen st)
@@ -81,7 +93,10 @@ struct stacks	push_a(stack_gen st)
 	new_b = malloc(sizeof(int) * st.blen);
 	new_a = malloc(sizeof(int) * st.alen);
 	if (!new_a || !new_b)
+	{
+		st.error = 4;
 		return (st);
+	}
 	new_a[0] = st.b[0];
 	while (j < st.blen)
 	{
@@ -136,7 +151,10 @@ struct stacks	push_b(stack_gen st)
 	new_b = malloc(sizeof(int) * st.blen);
 	new_a = malloc(sizeof(int) * st.alen);
 	if (!new_a || !new_b)
+	{
+		st.error = 4;
 		return (st);
+	}
 	new_b[0] = st.a[0];
 	while (j < st.alen)
 	{
@@ -181,8 +199,6 @@ struct stacks	push_b(stack_gen st)
 	return (st);
 }
 
-
-
 struct stacks	rotate_a(stack_gen st)
 {
 	int	aux;
@@ -192,7 +208,6 @@ struct stacks	rotate_a(stack_gen st)
 	aux = st.a[0];
 	while (i < st.alen - 1)
 	{
-
 		st.a[i] = st.a[i + 1];
 		i++;
 	}
@@ -249,7 +264,6 @@ struct stacks	rotate_b(stack_gen st)
 	printf("\n");
 	return (st);
 }
-
 
 struct stacks	rotate_ab(stack_gen st)
 {
@@ -334,138 +348,3 @@ struct stacks	reverse_ab(stack_gen st)
 	st.mvs++;
 	return (st);
 }
-
-/*
-int main (void)
-{
-	stack_gen st;
-
-	st.alen = 3;
-	st.blen = 3;
-	st.a = malloc (sizeof(int) * 3);
-	st.b = malloc (sizeof(int) * 3);
-	st.a[0] = 1;
-	st.a[1] = 2;
-	st.a[2] = 3;
-
-	st.b[0] = 5;
-	st.b[1] = 6;
-	st.b[2] = 7;
-
-	st = push_a(st);
-	st = push_a(st);
-	st = push_a(st);
-	st = push_a(st);
-	st = push_a(st);
-	int i = 0;
-	while (i < st.alen)
-	{
-		printf("-%d-", st.a[i]);
-		i++;
-	}
-	i = 0;
-	while (i < st.blen)
-	{
-		printf("+%d+", st.b[i]);
-		i++;
-	}
-	printf("   ");
-	st = rotate_a(st);
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("/%d/", st.a[i]);
-		i++;
-	}
-	st = push_b(st);
-	st = push_b(st);
-	st = rotate_b(st);
-	st = push_a(st);
-	i = 0;
-	while (i < st.blen)
-	{
-		printf("|%d|", st.b[i]);
-		i++;
-	}
-	printf("    ");
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	i = 0;
-	printf("    ");
-	st = reverse_a(st);
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	printf("    ");
-	st = reverse_a(st);
-	st = reverse_a(st);
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	printf("   ");
-	st = push_b(st);
-	st = push_b(st);
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	printf("   ");
-	i = 0;
-	while (i < st.blen)
-	{
-		printf("|%d|", st.b[i]);
-		i++;
-	}
-	st = reverse_b(st);
-	printf("   ");
-	i = 0;
-	while (i < st.blen)
-	{
-		printf("|%d|", st.b[i]);
-		i++;
-	}
-	st = reverse_ab(st);
-	printf("   ");
-	i = 0;
-	while (i < st.blen)
-	{
-		printf("|%d|", st.b[i]);
-		i++;
-	}
-	printf("   ");
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	return (0);
-}*/
-
-/*
-int main(void)
-{
-	stack_gen	st;
-
-	st.alen = 3;
-	st.blen = 0;
-	st.mvs = 0;
-	st.a = malloc (sizeof(int) * 3);
-	st.a[0] = 1;
-	st.a[1] = 2;
-	st.a[2] = 3;
-
-	st = push_b(st);
-	return (0);
-}*/

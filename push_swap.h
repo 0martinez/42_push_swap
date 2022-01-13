@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/12 18:46:12 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/13 13:34:26 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ typedef struct stacks
 	int	its_ord;
 	int	mvs;
 	int	error;
+	int	pos_if_ordered;
 
 }	stack_gen;
-
-int atoi_checker;
 
 struct stacks	swap_a(stack_gen st);
 
@@ -69,5 +68,9 @@ struct stacks	new_sort(stack_gen st);
 struct stacks	sort_100(stack_gen st);
 
 struct stacks	sort_manager(stack_gen st);
+
+struct stacks	free_management(stack_gen st);
+
+int				check_if_a_ordered(stack_gen st);
 
 #endif
