@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:23:20 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/13 17:40:27 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:01:27 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ struct stacks	push_all_b(stack_gen st)
 		return (st);
 	}*/
 	if (st.alen % 2 == 0)
-			aux = (st.clen / 2) - 1;
+		aux = (st.clen / 2) - 1;
 	else
-			aux = st.clen / 2;
+		aux = st.clen / 2;
 	middle = st.c[aux];
 	while (st.alen != 2)
 	{
@@ -106,14 +106,13 @@ struct stacks	push_all_b(stack_gen st)
 				st = push_b(st);
 			else
 				st = rotate_a(st);
-			printf("check = %d\n", check_if_a_ordered(st));
 			if (check_if_a_ordered(st) == 0)
 				return (st);
 		}
 		if (st.alen % 2 == 0)
-			aux = (st.clen / 2) - 1;
+			aux += (st.alen / 2) - 1;
 		else
-			aux = st.clen / 2;
+			aux += st.alen / 2;
 		middle = st.c[aux];
 	}
 	if (st.a[0] > st.a[1])
@@ -137,10 +136,8 @@ struct stacks	push_all_a(stack_gen st)
 	int	num_to_push;
 
 	i = (st.clen - 1) - st.alen;
-	printf("||||%d||||", i);
-	printf("&%d&", st.error);
-	st.error = 7;
-	return (st);
+	//printf("||||%d||||", i);
+	//printf("&%d&", st.error);
 	if (i < 0)
 		return (st);
 	while (st.blen > 2)
