@@ -6,13 +6,13 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:23:20 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/13 18:53:49 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/17 17:58:25 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-struct stacks	sort_100(stack_gen st)
+struct stacks	sort_nums(stack_gen st)
 {
 	int	i;
 	int	flg;
@@ -64,7 +64,7 @@ struct stacks	asign_c(stack_gen st)
 		st.c[i] = st.a[i];
 		i++;
 	}
-	st = sort_100(st);
+	st = sort_nums(st);
 	return (st);
 }
 
@@ -87,38 +87,29 @@ struct stacks	push_all_b(stack_gen st)
 	int	aux;
 	int	middle;
 
+	aux = 0;
 	if (check_if_a_ordered(st) == 0)
 	{
 		st.error = 10;
 		return (st);
 	}
-	if (st.alen % 2 == 0)
-		aux = (st.clen / 2) - 1;
-	else
-		aux = st.clen / 2;
-	middle = st.c[aux];
 	while (st.alen != 2)
 	{
-		while (check_if_lower_than_middle(st, middle) != 0 && st.alen != 2)
-		{
-			if (st.a[0] <= middle)
-			{
-				/*if (st.a[1] <= middle && st.a[1] < st.a[0])
-					st = swap_a(st);*/
-				st = push_b(st);
-			}
-			else
-				st = rotate_a(st);
-			if (check_if_a_ordered(st) == 0)
-				return (st);
-		}
-		if (check_if_a_ordered(st) == 0)//CAUTION WITH THIS WHEN THERE ARE ONLY 2 NUMBERS TO SORTS IT BRAKES
-			return (st);
 		if (st.alen % 2 == 0)
 			aux += (st.alen / 2) - 1;
 		else
 			aux += st.alen / 2;
 		middle = st.c[aux];
+		while (check_if_lower_than_middle(st, middle) != 0 && st.alen != 2)
+		{
+			if (st.a[0] <= middle)
+				st = push_b(st);
+			else
+				st = rotate_a(st);
+			if ((check_if_a_ordered(st) == 0)
+				&& (check_if_lower_than_middle(st, middle) == 0))
+				return (st);
+		}
 	}
 	if (st.a[0] > st.a[1])
 		st = swap_a(st);
@@ -141,8 +132,6 @@ struct stacks	push_all_a(stack_gen st)
 	int	num_to_push;
 
 	i = (st.clen - 1) - st.alen;
-	//printf("||||%d||||", i);
-	//printf("&%d&", st.error);
 	if (check_if_a_ordered(st) == 0 && st.error == 10)
 		return (st);
 	if (i < 0)
@@ -210,6 +199,7 @@ struct stacks	sort_3(stack_gen st)
 		st = rotate_a(st);
 	if (st.a[0] > st.a[1])
 		st = swap_a(st);
+	st.error = 100;
 	return (st);
 }
 
@@ -226,10 +216,14 @@ struct stacks	sort_manager(stack_gen st)
 		st = sort_3(st);
 		return (st);
 	}
-	else if (st.alen <= 600)
+	else if (st.alen <= 100)
 	{
 		st = push_all_b(st);
 		st = push_all_a(st);
+	}
+	else
+	{
+		st = big_stack_management(st);
 	}
 	if (st.error != 0)
 		return (st);

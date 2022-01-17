@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/13 18:36:19 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/17 12:58:10 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	leaks(void)
 
 int	ft_atoi(const char *str, stack_gen *st)
 {
-	int				simb;
-	unsigned long	num;
-	int				i;
+	int		simb;
+	long	num;
+	int		i;
 
 	i = 0;
 	num = 0;
@@ -51,7 +51,7 @@ int	ft_atoi(const char *str, stack_gen *st)
 		i++;
 	}
 	num = simb * num;
-	if (str[i] != 0 || num > 2147483647 || num < 0)
+	if (str[i] != 0 || num > 2147483647 || num < -2147483648)
 	{
 		st->error = 2;
 		return (0);
@@ -122,17 +122,19 @@ int	main(int argc, char **argv)
 	st.a = to_stack(argc, argv, &st);
 	if (st.error != 0)
 	{
+		printf("%d", st.error);
 		st = free_management(st);
 		return (print_error());
 	}
 	st = sort_manager(st);
-	if (st.error != 0 && st.error != 10)
+	if (st.error != 0 && st.error != 10 && st.error != 100)
 	{
+		printf("%d", st.error);
 		st = free_management(st);
 		return (print_error());
 	}
 	print_stack(st);
 	st = free_management(st);
-	//atexit(leaks);
+	//atexit(leaks); 
 	return (0);
 }

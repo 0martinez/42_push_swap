@@ -1,30 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_be_free.c                                       :+:      :+:    :+:   */
+/*   100_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 12:16:36 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/17 12:34:47 by omartine         ###   ########.fr       */
+/*   Created: 2022/01/14 12:36:41 by omartine          #+#    #+#             */
+/*   Updated: 2022/01/14 12:36:58 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-struct stacks	free_management(stack_gen st)
-{
-	if (st.error == 1)
-		return (st);
-	if (st.error == 2 || st.error == 3)
-		free(st.a);
-	else
-	{
-		free(st.a);
-		free(st.c);
-		if (st.error == 10 || st.error == 100)
-			return (st);
-		free(st.b);
-	}
-	return (st);
-}
+

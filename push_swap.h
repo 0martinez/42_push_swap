@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/13 13:34:26 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/17 17:59:47 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@
 
 typedef struct stacks
 {
-	int	*a;
-	int	*b;
-	int	*c;
-	int	alen;
-	int	blen;
-	int	clen;
+	int		*a;
+	int		*b;
+	int		*c;
+	int		*binary_int;
+	char	**binary_char;
+	int		alen;
+	int		blen;
+	int		clen;
 
-	int	its_ord;
-	int	mvs;
-	int	error;
-	int	pos_if_ordered;
+	int		its_ord;
+	int		biggest_length;
+	int		mvs;
+	int		error;
+	int		pos_if_ordered;
 
 }	stack_gen;
 
@@ -65,12 +68,14 @@ struct stacks	first_check_b(stack_gen st);
 
 struct stacks	new_sort(stack_gen st);
 
-struct stacks	sort_100(stack_gen st);
+struct stacks	sort_nums(stack_gen st);
 
 struct stacks	sort_manager(stack_gen st);
 
 struct stacks	free_management(stack_gen st);
 
 int				check_if_a_ordered(stack_gen st);
+
+struct stacks	big_stack_management(stack_gen st);
 
 #endif
