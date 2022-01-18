@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/17 17:59:47 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:59:55 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ typedef struct stacks
 	int		*a;
 	int		*b;
 	int		*c;
-	int		*binary_int;
-	char	**binary_char;
 	int		alen;
 	int		blen;
 	int		clen;
@@ -77,5 +75,7 @@ struct stacks	free_management(stack_gen st);
 int				check_if_a_ordered(stack_gen st);
 
 struct stacks	big_stack_management(stack_gen st);
+
+struct	stacks	binary_management(stack_gen st);
 
 #endif

@@ -38,7 +38,7 @@ int main (void)
     printf("%d %d", st.a, st.b);
     return 0;
 }*/
-
+/*
 int	asdd(stack_gen *st)
 {
 	int	i;
@@ -57,5 +57,14 @@ int	main(void)
 	i = 0;
 	i = asdd(&st);
 	printf("%d", st.error);
+	return (0);
+}*/
+
+int main(void)
+{
+	if (((27 >> 0)&1) == 1)
+		printf("a: %d", 27&1);
+	else
+		printf("b");
 	return (0);
 }

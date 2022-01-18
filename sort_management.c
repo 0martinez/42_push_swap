@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:23:20 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/17 17:58:25 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/18 13:12:54 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,8 @@ struct stacks	sort_manager(stack_gen st)
 	}
 	else
 	{
-		st = big_stack_management(st);
+		//st = big_stack_management(st);
+		st = binary_management(st);
 	}
 	if (st.error != 0)
 		return (st);

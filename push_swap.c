@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/17 12:58:10 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/18 19:24:47 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ int	ft_atoi(const char *str, stack_gen *st)
 		if (str[i] == '-')
 			simb = -1;
 		i++;
+		if (str[i] == 0)
+		{
+			st->error = 2;
+			return (0);
+		}
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
@@ -73,13 +78,11 @@ static int	*to_stack(int argc, char **argv, stack_gen *st)
 		st->error = 1;
 		return (0);
 	}
-	stack[argc] = 0;
 	while (i < argc - 1)
 	{
 		stack[i] = ft_atoi(argv[j], st);
 		if (st->error == 2)
 			return (0);
-		//printf("%d ", stack[i]);
 		i++;
 		j++;
 	}
@@ -122,7 +125,6 @@ int	main(int argc, char **argv)
 	st.a = to_stack(argc, argv, &st);
 	if (st.error != 0)
 	{
-		printf("%d", st.error);
 		st = free_management(st);
 		return (print_error());
 	}
@@ -135,6 +137,6 @@ int	main(int argc, char **argv)
 	}
 	print_stack(st);
 	st = free_management(st);
-	//atexit(leaks); 
+	atexit(leaks);
 	return (0);
 }
