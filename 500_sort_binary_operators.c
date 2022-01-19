@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:49:11 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/18 18:01:56 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/19 15:59:25 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,14 @@ struct stacks	binary_management(stack_gen st)
 	int	reference_length;
 
 	i = 0;
+	if (check_if_a_ordered(st) == 0)
+	{
+		st.error = 10;
+		return (st);
+	}
 	st = no_negative_numbers(st);
 	reference_length = b_reference_length(st);
-	while (i <= reference_length)
+	while (i < reference_length)
 	{
 		movements = 0;
 		while (movements < st.clen)

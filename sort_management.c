@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:23:20 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/18 13:12:54 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/19 13:12:02 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,23 +222,8 @@ struct stacks	sort_manager(stack_gen st)
 		st = push_all_a(st);
 	}
 	else
-	{
-		//st = big_stack_management(st);
 		st = binary_management(st);
-	}
 	if (st.error != 0)
 		return (st);
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	printf("---");
-	i = 0;
-	while (i < st.blen)
-	{
-		printf("<%d>", st.b[i]);
-		i++;
-	}
 	return (st);
 }

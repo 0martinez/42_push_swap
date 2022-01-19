@@ -6,18 +6,11 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/18 19:24:47 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/19 15:41:07 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	checker(int argc)
-{
-	if (argc == 1)
-		return (0);
-	return (1);
-}
 
 static int	print_error(void)
 {
@@ -120,7 +113,7 @@ int	main(int argc, char **argv)
 	stack_gen	st;
 
 	st = init_stack(argc);
-	if (checker(argc) == 0)
+	if (argc == 1)
 		return (print_error());
 	st.a = to_stack(argc, argv, &st);
 	if (st.error != 0)
