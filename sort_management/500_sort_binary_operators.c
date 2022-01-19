@@ -6,13 +6,13 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:49:11 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/19 15:59:25 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/19 17:26:08 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-struct	stacks	no_negative_numbers(stack_gen st)
+struct	stacks	no_negative_numbers(t_stack_gen st)
 {
 	int	i;
 	int	j;
@@ -29,7 +29,7 @@ struct	stacks	no_negative_numbers(stack_gen st)
 	return (st);
 }
 
-int	b_reference_length(stack_gen st)
+int	b_reference_length(t_stack_gen st)
 {
 	int	i;
 
@@ -39,7 +39,7 @@ int	b_reference_length(stack_gen st)
 	return (i);
 }
 
-struct stacks	reasign_values(stack_gen st)
+struct stacks	reasign_values(t_stack_gen st)
 {
 	int	i;
 
@@ -52,19 +52,13 @@ struct stacks	reasign_values(stack_gen st)
 	return (st);
 }
 
-struct stacks	binary_management(stack_gen st)
+struct stacks	binary_operation(t_stack_gen st)
 {
 	int	i;
 	int	movements;
 	int	reference_length;
 
 	i = 0;
-	if (check_if_a_ordered(st) == 0)
-	{
-		st.error = 10;
-		return (st);
-	}
-	st = no_negative_numbers(st);
 	reference_length = b_reference_length(st);
 	while (i < reference_length)
 	{
@@ -81,6 +75,23 @@ struct stacks	binary_management(stack_gen st)
 			st = push_a(st);
 		i++;
 	}
+	return (st);
+}
+
+struct stacks	sort_500(t_stack_gen st)
+{
+	int	i;
+	int	movements;
+	int	reference_length;
+
+	i = 0;
+	if (check_if_a_ordered(st) == 0)
+	{
+		st.error = 10;
+		return (st);
+	}
+	st = no_negative_numbers(st);
+	st = binary_operation(st);
 	st = reasign_values(st);
 	return (st);
 }

@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/18 17:59:55 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/19 17:13:05 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,56 +26,35 @@ typedef struct stacks
 	int		blen;
 	int		clen;
 
-	int		its_ord;
 	int		biggest_length;
 	int		mvs;
 	int		error;
-	int		pos_if_ordered;
 
-}	stack_gen;
+}	t_stack_gen;
 
-struct stacks	swap_a(stack_gen st);
+struct stacks	swap_a(t_stack_gen st);
+struct stacks	swap_b(t_stack_gen st);
+struct stacks	swap_ab(t_stack_gen st);
+struct stacks	push_a(t_stack_gen st);
+struct stacks	push_b(t_stack_gen st);
+struct stacks	rotate_a(t_stack_gen st);
+struct stacks	rotate_b(t_stack_gen st);
+struct stacks	rotate_ab(t_stack_gen st);
+struct stacks	reverse_a(t_stack_gen st);
+struct stacks	reverse_b(t_stack_gen st);
+struct stacks	reverse_ab(t_stack_gen st);
 
-struct stacks	swap_b(stack_gen st);
+struct stacks	sort_management(t_stack_gen st);
 
-struct stacks	swap_ab(stack_gen st);
+struct stacks	sort_3(t_stack_gen st);
+struct stacks	sort_100(t_stack_gen st);
+struct	stacks	sort_500(t_stack_gen st);
 
-struct stacks	push_a(stack_gen st);
+struct stacks	bubble_sort(t_stack_gen st);
+int				check_if_a_ordered(t_stack_gen st);
+int				check_if_lower_than_middle(t_stack_gen st, int middle);
+int				search_num_in_b(t_stack_gen st, int num_to_push);
 
-struct stacks	push_b(stack_gen st);
-
-struct stacks	rotate_a(stack_gen st);
-
-struct stacks	rotate_b(stack_gen st);
-
-struct stacks	rotate_ab(stack_gen st);
-
-struct stacks	reverse_a(stack_gen st);
-
-struct stacks	reverse_b(stack_gen st);
-
-struct stacks	reverse_ab(stack_gen st);
-
-struct stacks	swaps(stack_gen st);
-
-struct stacks	final_or(stack_gen st);
-
-int				position_b(stack_gen st);
-
-struct stacks	first_check_b(stack_gen st);
-
-struct stacks	new_sort(stack_gen st);
-
-struct stacks	sort_nums(stack_gen st);
-
-struct stacks	sort_manager(stack_gen st);
-
-struct stacks	free_management(stack_gen st);
-
-int				check_if_a_ordered(stack_gen st);
-
-struct stacks	big_stack_management(stack_gen st);
-
-struct	stacks	binary_management(stack_gen st);
+struct stacks	free_management(t_stack_gen st);
 
 #endif

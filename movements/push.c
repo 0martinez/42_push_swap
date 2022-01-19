@@ -6,13 +6,13 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:17:35 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/19 16:25:34 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/19 17:14:55 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-struct stacks	push_a(stack_gen st)
+struct stacks	push_a(t_stack_gen st)
 {
 	int	i;
 	int	j;
@@ -70,7 +70,7 @@ struct stacks	push_a(stack_gen st)
 	return (st);
 }
 
-struct stacks	push_b(stack_gen st)
+struct stacks	push_b(t_stack_gen st)
 {
 	int	i;
 	int	j;

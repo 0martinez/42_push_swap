@@ -6,13 +6,13 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:20:48 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/19 16:26:38 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/19 17:15:21 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-struct stacks	reverse_a(stack_gen st)
+struct stacks	reverse_a(t_stack_gen st)
 {
 	int	aux;
 	int	i;
@@ -46,7 +46,7 @@ struct stacks	reverse_a(stack_gen st)
 	return (st);
 }
 
-struct stacks	reverse_b(stack_gen st)
+struct stacks	reverse_b(t_stack_gen st)
 {
 	int	aux;
 	int	i;
@@ -80,7 +80,7 @@ struct stacks	reverse_b(stack_gen st)
 	return (st);
 }
 
-struct stacks	reverse_ab(stack_gen st)
+struct stacks	reverse_ab(t_stack_gen st)
 {
 	st = reverse_a(st);
 	st = reverse_b(st);

@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/19 15:41:07 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/19 17:13:29 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	leaks(void)
 	system("leaks -q a.out");
 }
 
-int	ft_atoi(const char *str, stack_gen *st)
+int	ft_atoi(const char *str, t_stack_gen *st)
 {
 	int		simb;
 	long	num;
@@ -57,7 +57,7 @@ int	ft_atoi(const char *str, stack_gen *st)
 	return ((int )num);
 }
 
-static int	*to_stack(int argc, char **argv, stack_gen *st)
+static int	*to_stack(int argc, char **argv, t_stack_gen *st)
 {
 	int	*stack;
 	int	i;
@@ -82,7 +82,7 @@ static int	*to_stack(int argc, char **argv, stack_gen *st)
 	return (stack);
 }
 
-void	print_stack(stack_gen st)
+void	print_stack(t_stack_gen st)
 {
 	int	i;
 
@@ -98,19 +98,18 @@ void	print_stack(stack_gen st)
 
 struct stacks	init_stack(int argc)
 {
-	stack_gen	st;
+	t_stack_gen	st;
 
 	st.mvs = 0;
 	st.error = 0;
 	st.alen = argc - 1;
 	st.blen = 0;
-	st.pos_if_ordered = 2;
 	return (st);
 }
 
 int	main(int argc, char **argv)
 {
-	stack_gen	st;
+	t_stack_gen	st;
 
 	st = init_stack(argc);
 	if (argc == 1)
@@ -121,7 +120,7 @@ int	main(int argc, char **argv)
 		st = free_management(st);
 		return (print_error());
 	}
-	st = sort_manager(st);
+	st = sort_management(st);
 	if (st.error != 0 && st.error != 10 && st.error != 100)
 	{
 		printf("%d", st.error);
