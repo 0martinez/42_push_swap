@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:17:35 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/19 17:14:55 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/20 16:53:10 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,28 @@ struct stacks	push_a(t_stack_gen st)
 		return (st);
 	st.blen--;
 	st.alen++;
-	new_b = malloc(sizeof(int) * st.blen);
+	if (st.blen != 0)
+		new_b = malloc(sizeof(int) * st.blen);
 	new_a = malloc(sizeof(int) * st.alen);
-	if (!new_a || !new_b)
+	if (!new_a)
 	{
 		st.error = 4;
 		return (st);
 	}
 	new_a[0] = st.b[0];
-	while (j < st.blen)
+	if (st.blen != 0)
 	{
-		new_b[j] = st.b[i];
-		i++;
-		j++;
+		while (j < st.blen)
+		{
+			new_b[j] = st.b[i];
+			i++;
+			j++;
+		}
+		free(st.b);
+		st.b = new_b;
 	}
-	free(st.b);
-	st.b = new_b;
+	else
+		free(st.b);
 	i = 1;
 	j = 0;
 	while (i < st.alen)
@@ -52,7 +58,7 @@ struct stacks	push_a(t_stack_gen st)
 	free(st.a);
 	st.a = new_a;
 	st.mvs++;
-	printf("pa ");
+	/*printf("pa ");
 	i = 0;
 	while (i < st.alen)
 	{
@@ -66,7 +72,7 @@ struct stacks	push_a(t_stack_gen st)
 		printf("(%d)", st.b[i]);
 		i++;
 	}
-	printf("\n");
+	printf("\n");*/
 	return (st);
 }
 
@@ -116,7 +122,7 @@ struct stacks	push_b(t_stack_gen st)
 	}
 	st.b = new_b;
 	st.mvs++;
-	printf("pb ");
+	/*printf("pb ");
 	i = 0;
 	while (i < st.alen)
 	{
@@ -130,6 +136,6 @@ struct stacks	push_b(t_stack_gen st)
 		printf("(%d)", st.b[i]);
 		i++;
 	}
-	printf("\n");
+	printf("\n");*/
 	return (st);
 }

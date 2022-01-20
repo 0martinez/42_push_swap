@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:49:38 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/19 17:42:59 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/20 12:49:20 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ struct stacks	push_all_a_aux(t_stack_gen st, int i)
 struct stacks	push_all_a(t_stack_gen st)
 {
 	int	i;
-	int	num_to_push;
 
 	i = (st.clen - st.alen) - 1;
 	if (check_if_a_ordered(st) == 0 && st.error == 10)

@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/19 17:13:05 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/20 19:29:39 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct stacks
 
 }	t_stack_gen;
 
+int				print_error(void);
+
 struct stacks	swap_a(t_stack_gen st);
 struct stacks	swap_b(t_stack_gen st);
 struct stacks	swap_ab(t_stack_gen st);
@@ -56,5 +58,8 @@ int				check_if_lower_than_middle(t_stack_gen st, int middle);
 int				search_num_in_b(t_stack_gen st, int num_to_push);
 
 struct stacks	free_management(t_stack_gen st);
+
+int				split_atoi(const char *str, int i, int *stack, t_stack_gen *st);
+int				ft_atoi(const char *str, t_stack_gen *st)
 
 #endif

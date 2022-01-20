@@ -6,17 +6,11 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/19 17:13:29 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/20 19:30:06 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	print_error(void)
-{
-	write(1, "Error\n", 6);
-	return (0);
-}
 
 void	leaks(void)
 {
@@ -44,17 +38,24 @@ int	ft_atoi(const char *str, t_stack_gen *st)
 		}
 	}
 	while (str[i] >= '0' && str[i] <= '9')
+		num = (num * 10) + (str[i++] - '0');
+	if (str[i] != 0 || num * simb > 2147483647 || num * simb < -2147483648)
+		st->error = 2;
+	return ((int )num * simb);
+}
+
+int	check_if_split(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != 0)
 	{
-		num = (num * 10) + (str[i] - '0');
+		if (str[i] == ' ')
+			return (1);
 		i++;
 	}
-	num = simb * num;
-	if (str[i] != 0 || num > 2147483647 || num < -2147483648)
-	{
-		st->error = 2;
-		return (0);
-	}
-	return ((int )num);
+	return (0);
 }
 
 static int	*to_stack(int argc, char **argv, t_stack_gen *st)
@@ -73,11 +74,21 @@ static int	*to_stack(int argc, char **argv, t_stack_gen *st)
 	}
 	while (i < argc - 1)
 	{
-		stack[i] = ft_atoi(argv[j], st);
-		if (st->error == 2)
-			return (0);
-		i++;
-		j++;
+		if (check_if_split(argv[j]) == 1)
+		{
+			i = split_atoi(argv[j], i, &stack, st);
+			if (st->error == 2)
+				return (0);
+		}
+		else
+		{
+			stack[i] = ft_atoi(argv[j], st);
+			if (st->error == 2)
+				return (0);
+			i++;
+			j++;
+		}
+
 	}
 	return (stack);
 }

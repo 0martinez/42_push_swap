@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   500_sort_binary_operators.c                        :+:      :+:    :+:   */
+/*   500_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:49:11 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/19 17:26:08 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/20 17:08:32 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ struct stacks	binary_operation(t_stack_gen st)
 struct stacks	sort_500(t_stack_gen st)
 {
 	int	i;
-	int	movements;
-	int	reference_length;
 
 	i = 0;
 	if (check_if_a_ordered(st) == 0)

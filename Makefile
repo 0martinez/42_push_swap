@@ -6,7 +6,7 @@
 #    By: omartine <omartine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 16:02:43 by omartine          #+#    #+#              #
-#    Updated: 2022/01/19 16:40:40 by omartine         ###   ########.fr        #
+#    Updated: 2022/01/20 13:46:56 by omartine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ CFLAGS = -Wall -Werror -Wextra
 
 NAME = libpush_swap.a
 
-SRCS = push_swap.c movements.c sort_management.c 500_sort_binary_operators.c \
-		movements/push.c movements/reverse.c movements/rotates.c \
-		movements/swaps.c to_be_free.c
+SRCS = push_swap.c movements/push.c movements/reverse.c movements/rotates.c \
+		movements/swaps.c sort_management/3_sort.c sort_management/100_sort.c \
+		sort_management/500_sort.c sort_management/sort_utils.c \
+		sort_management/sort_management.c push_swap.c to_be_free.c main_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
