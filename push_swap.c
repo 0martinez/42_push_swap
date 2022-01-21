@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/20 19:30:06 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/21 19:25:02 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,78 +17,25 @@ void	leaks(void)
 	system("leaks -q a.out");
 }
 
-int	ft_atoi(const char *str, t_stack_gen *st)
-{
-	int		simb;
-	long	num;
-	int		i;
-
-	i = 0;
-	num = 0;
-	simb = 1;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			simb = -1;
-		i++;
-		if (str[i] == 0)
-		{
-			st->error = 2;
-			return (0);
-		}
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-		num = (num * 10) + (str[i++] - '0');
-	if (str[i] != 0 || num * simb > 2147483647 || num * simb < -2147483648)
-		st->error = 2;
-	return ((int )num * simb);
-}
-
-int	check_if_split(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != 0)
-	{
-		if (str[i] == ' ')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static int	*to_stack(int argc, char **argv, t_stack_gen *st)
+static int	*to_stack(char **argv, t_stack_gen *st)
 {
 	int	*stack;
-	int	i;
 	int	j;
+	int	z;
+	int	*to_add;
 
-	i = 0;
 	j = 1;
-	stack = (int *) malloc(sizeof(int) * argc);
-	if (!stack)
+	while (argv[j])
 	{
-		st->error = 1;
-		return (0);
-	}
-	while (i < argc - 1)
-	{
-		if (check_if_split(argv[j]) == 1)
-		{
-			i = split_atoi(argv[j], i, &stack, st);
-			if (st->error == 2)
-				return (0);
-		}
-		else
-		{
-			stack[i] = ft_atoi(argv[j], st);
-			if (st->error == 2)
-				return (0);
-			i++;
-			j++;
-		}
-
+		z = 0;
+		to_add = split_atoi(argv[j], st, &z);
+		if (st->error != 0 || !to_add)
+			return (0);
+		stack = add_to_stack(to_add, stack, z, st);
+		free(to_add);
+		if (st->error != 0)
+			return (0);
+		j++;
 	}
 	return (stack);
 }
@@ -107,13 +54,13 @@ void	print_stack(t_stack_gen st)
 	printf("%d", st.mvs);
 }
 
-struct stacks	init_stack(int argc)
+struct stacks	init_stack(void)
 {
 	t_stack_gen	st;
 
 	st.mvs = 0;
 	st.error = 0;
-	st.alen = argc - 1;
+	st.alen = 0;
 	st.blen = 0;
 	return (st);
 }
@@ -122,10 +69,10 @@ int	main(int argc, char **argv)
 {
 	t_stack_gen	st;
 
-	st = init_stack(argc);
+	st = init_stack();
 	if (argc == 1)
-		return (print_error());
-	st.a = to_stack(argc, argv, &st);
+		return (0);
+	st.a = to_stack(argv, &st);
 	if (st.error != 0)
 	{
 		st = free_management(st);
@@ -134,12 +81,12 @@ int	main(int argc, char **argv)
 	st = sort_management(st);
 	if (st.error != 0 && st.error != 10 && st.error != 100)
 	{
-		printf("%d", st.error);
+		//printf("%d", st.error);
 		st = free_management(st);
 		return (print_error());
 	}
-	print_stack(st);
+	//print_stack(st);
 	st = free_management(st);
-	atexit(leaks);
+	//atexit(leaks);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:53:09 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/20 19:29:20 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/21 19:08:03 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static size_t	wordcount(char const *s, int in, int i, char c)
+size_t	wordcount(char const *s, int in, int i, char c)
 {
 	while (s[in] != 0)
 	{
@@ -28,7 +28,7 @@ static size_t	wordcount(char const *s, int in, int i, char c)
 	return (i);
 }
 
-static int	position(char const *s, int pos, char c, int flg)
+int	position(char const *s, int pos, char c, int flg)
 {
 	if (flg == 1)
 	{
@@ -41,12 +41,12 @@ static int	position(char const *s, int pos, char c, int flg)
 	return (pos);
 }
 
-static void	*free_split(char **aux, int words)
+void	*free_split(char **aux, int words)
 {
 	int	i;
 
 	i = 0;
-	while (i < words)
+	while (i <= words)
 	{
 		free(aux[i]);
 		i++;
@@ -55,7 +55,7 @@ static void	*free_split(char **aux, int words)
 	return (0);
 }
 
-static char	*word(char const *s, int in, int fin)
+char	*word(char const *s, int in, int fin)
 {
 	int		i;
 	char	*aux;
@@ -100,27 +100,4 @@ char	**ft_split(char const *s, char c)
 		i++;
 	}
 	return (aux);
-}
-
-int	split_atoi(const char *s, int i, int *stack, t_stack_gen *st)
-{
-	int		j;
-	int		num_words;
-	char	**str;
-
-	j = 0;
-	num_words = wordcount(s, 0, i, '0');
-	str = ft_split(str, ' ');
-	while (j < num_words)
-	{
-		stack[i] = ft_atoi(str[j], st);
-		if (!stack[i])
-		{
-			st->error = 2;
-			return (0);
-		}
-		i++;
-		j++;
-	}
-	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:19:07 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/20 16:33:47 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/21 19:21:16 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ struct stacks	rotate_a(t_stack_gen st)
 	}
 	st.a[i] = aux;
 	st.mvs++;
+	write(1, "ra\n", 3);
 	/*printf("ra ");
 	i = 0;
 	while (i < st.alen)
@@ -60,6 +61,7 @@ struct stacks	rotate_b(t_stack_gen st)
 	}
 	st.b[i] = aux;
 	st.mvs++;
+	write(1, "rb\n", 3);
 	/*printf("rb ");
 	i = 0;
 	while (i < st.alen)
@@ -83,5 +85,6 @@ struct stacks	rotate_ab(t_stack_gen st)
 	st = rotate_a(st);
 	st = rotate_b(st);
 	st.mvs++;
+	write(1, "rr\n", 3);
 	return (st);
 }

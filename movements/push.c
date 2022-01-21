@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:17:35 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/20 16:53:10 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/21 19:17:09 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ struct stacks	push_a(t_stack_gen st)
 	free(st.a);
 	st.a = new_a;
 	st.mvs++;
+	write(1, "pa\n", 3);
 	/*printf("pa ");
 	i = 0;
 	while (i < st.alen)
@@ -122,6 +123,7 @@ struct stacks	push_b(t_stack_gen st)
 	}
 	st.b = new_b;
 	st.mvs++;
+	write(1, "pb\n", 3);
 	/*printf("pb ");
 	i = 0;
 	while (i < st.alen)

@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/20 19:29:39 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:55:05 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,13 @@ int				search_num_in_b(t_stack_gen st, int num_to_push);
 
 struct stacks	free_management(t_stack_gen st);
 
-int				split_atoi(const char *str, int i, int *stack, t_stack_gen *st);
-int				ft_atoi(const char *str, t_stack_gen *st)
+int				*split_atoi(const char *str, t_stack_gen *st, int *z);
+int				ft_atoi(const char *str, t_stack_gen *st);
+int				*add_to_stack(int *to_add, int *old_stack,
+					int add_length, t_stack_gen *st);
+
+char			**ft_split(char const *s, char c);
+size_t			wordcount(char const *s, int in, int i, char c);
+void			*free_split(char **aux, int words);
 
 #endif
