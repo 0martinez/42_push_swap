@@ -29,21 +29,6 @@ struct stacks	reverse_a(t_stack_gen st)
 	st.a[0] = aux;
 	st.mvs++;
 	write(1, "rra\n", 4);
-	/*printf("rra ");
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	i = 0;
-	printf("---");
-	while (i < st.blen)
-	{
-		printf("(%d)", st.b[i]);
-		i++;
-	}
-	printf("\n");*/
 	return (st);
 }
 
@@ -64,21 +49,6 @@ struct stacks	reverse_b(t_stack_gen st)
 	st.b[0] = aux;
 	st.mvs++;
 	write(1, "rrb\n", 4);
-	/*printf("rrb ");
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	i = 0;
-	printf("---");
-	while (i < st.blen)
-	{
-		printf("(%d)", st.b[i]);
-		i++;
-	}
-	printf("\n");*/
 	return (st);
 }
 

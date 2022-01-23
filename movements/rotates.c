@@ -27,21 +27,6 @@ struct stacks	rotate_a(t_stack_gen st)
 	st.a[i] = aux;
 	st.mvs++;
 	write(1, "ra\n", 3);
-	/*printf("ra ");
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	i = 0;
-	printf("---");
-	while (i < st.blen)
-	{
-		printf("(%d)", st.b[i]);
-		i++;
-	}
-	printf("\n");*/
 	return (st);
 }
 
@@ -62,21 +47,6 @@ struct stacks	rotate_b(t_stack_gen st)
 	st.b[i] = aux;
 	st.mvs++;
 	write(1, "rb\n", 3);
-	/*printf("rb ");
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	i = 0;
-	printf("---");
-	while (i < st.blen)
-	{
-		printf("(%d)", st.b[i]);
-		i++;
-	}
-	printf("\n");*/
 	return (st);
 }
 

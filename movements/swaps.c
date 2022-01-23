@@ -15,7 +15,6 @@
 struct stacks	swap_a(t_stack_gen st)
 {
 	int	aux;
-	//int	i;
 
 	if (st.alen == 0 || st.alen == 1)
 		return (st);
@@ -24,28 +23,12 @@ struct stacks	swap_a(t_stack_gen st)
 	st.a[1] = aux;
 	st.mvs++;
 	write(1, "sa\n", 3);
-	/*printf("sa ");
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	i = 0;
-	printf("---");
-	while (i < st.blen)
-	{
-		printf("(%d)", st.b[i]);
-		i++;
-	}
-	printf("\n");*/
 	return (st);
 }
 
 struct stacks	swap_b(t_stack_gen st)
 {
 	int	aux;
-	//int	i;
 
 	if (st.blen == 0 || st.blen == 1)
 		return (st);
@@ -54,21 +37,6 @@ struct stacks	swap_b(t_stack_gen st)
 	st.b[1] = aux;
 	st.mvs++;
 	write(1, "sb\n", 3);
-	/*printf("sb ");
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	i = 0;
-	printf("---");
-	while (i < st.blen)
-	{
-		printf("(%d)", st.b[i]);
-		i++;
-	}
-	printf("\n");*/
 	return (st);
 }
 

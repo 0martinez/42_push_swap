@@ -68,4 +68,6 @@ char			**ft_split(char const *s, char c);
 size_t			wordcount(char const *s, int in, int i, char c);
 void			*free_split(char **aux, int words);
 
+static 			int	*to_stack(char **argv, t_stack_gen *st);
+
 #endif

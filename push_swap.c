@@ -17,7 +17,7 @@ void	leaks(void)
 	system("leaks -q a.out");
 }
 
-static int	*to_stack(char **argv, t_stack_gen *st)
+int	*to_stack(char **argv, t_stack_gen *st)
 {
 	int	*stack;
 	int	j;

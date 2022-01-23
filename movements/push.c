@@ -59,21 +59,6 @@ struct stacks	push_a(t_stack_gen st)
 	st.a = new_a;
 	st.mvs++;
 	write(1, "pa\n", 3);
-	/*printf("pa ");
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	i = 0;
-	printf("---");
-	while (i < st.blen)
-	{
-		printf("(%d)", st.b[i]);
-		i++;
-	}
-	printf("\n");*/
 	return (st);
 }
 
@@ -124,20 +109,5 @@ struct stacks	push_b(t_stack_gen st)
 	st.b = new_b;
 	st.mvs++;
 	write(1, "pb\n", 3);
-	/*printf("pb ");
-	i = 0;
-	while (i < st.alen)
-	{
-		printf("<%d>", st.a[i]);
-		i++;
-	}
-	i = 0;
-	printf("---");
-	while (i < st.blen)
-	{
-		printf("(%d)", st.b[i]);
-		i++;
-	}
-	printf("\n");*/
 	return (st);
 }
