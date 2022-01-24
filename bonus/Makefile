@@ -5,22 +5,22 @@
 #                                                     +:+ +:+         +:+      #
 #    By: omartine <omartine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/19 16:02:43 by omartine          #+#    #+#              #
-#    Updated: 2022/01/24 16:19:51 by omartine         ###   ########.fr        #
+#    Created: 2022/01/24 12:21:40 by omartine          #+#    #+#              #
+#    Updated: 2022/01/24 13:26:49 by omartine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-NAME = libpush_swap.a
+NAME = my_checker_bonus.a
 
-
-SRCS = push_swap.c movements/push.c movements/reverse.c movements/rotates.c \
-		movements/swaps.c sort_management/3_sort.c sort_management/100_sort.c \
-		sort_management/500_sort.c sort_management/sort_utils.c \
-		sort_management/sort_management.c push_swap.c to_be_free.c main_utils.c \
-		split.c
+SRCS = my_checker.c movements_bonus/push.c movements_bonus/reverse.c \
+		movements_bonus/rotates.c movements_bonus/swaps.c sort_management_bonus/3_sort.c \
+		sort_management_bonus/100_sort.c sort_management_bonus/500_sort.c split.c \
+		sort_management_bonus/sort_utils.c sort_management_bonus/sort_management.c \
+		to_be_free.c main_utils.c 42_Get_next_line/get_next_line.c \
+		42_Get_next_line/get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

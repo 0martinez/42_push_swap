@@ -6,11 +6,11 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:17:35 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/24 17:12:36 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/24 16:35:06 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../bonus.h"
 
 struct stacks	push_a(t_stack_gen st)
 {
@@ -58,7 +58,6 @@ struct stacks	push_a(t_stack_gen st)
 	free(st.a);
 	st.a = new_a;
 	st.mvs++;
-	//write(1, "pa\n", 3);
 	return (st);
 }
 
@@ -108,6 +107,5 @@ struct stacks	push_b(t_stack_gen st)
 	}
 	st.b = new_b;
 	st.mvs++;
-	//write(1, "pb\n", 3);
 	return (st);
 }

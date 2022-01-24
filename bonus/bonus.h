@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   bonus.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/24 12:09:22 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/24 13:38:47 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef BONUS_H
+# define BONUS_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -69,5 +69,8 @@ size_t			wordcount(char const *s, int in, int i, char c);
 void			*free_split(char **aux, int words);
 
 int				*to_stack(char **argv, t_stack_gen *st);
+
+char			*get_next_line(int fd);
+int				ft_strlen(char *str);
 
 #endif
