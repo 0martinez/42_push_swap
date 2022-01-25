@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:23:20 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/24 12:36:23 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:00:54 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,14 @@ struct stacks	sort_management(t_stack_gen st)
 	if (st.alen <= 3)
 		st = sort_3(st);
 	else if (st.alen <= 100)
+	{
+		if (check_if_a_ordered(st) == 0)
+		{
+			st.error = 10;
+			return (st);
+		}
 		st = sort_100(st);
+	}
 	else
 		st = sort_500(st);
 	return (st);

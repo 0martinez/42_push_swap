@@ -6,17 +6,31 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:44:50 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/19 17:33:49 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:49:46 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+static struct stacks	bubble_sort_aux(t_stack_gen st, int i)
+{
+	int	aux;
+
+	if (st.c[i] == st.c[i + 1])
+	{
+		st.error = 1;
+		return (st);
+	}
+	aux = st.c[i];
+	st.c[i] = st.c[i + 1];
+	st.c[i + 1] = aux;
+	return (st);
+}
+
 struct stacks	bubble_sort(t_stack_gen st)
 {
 	int	i;
 	int	flg;
-	int	aux;
 
 	flg = 0;
 	while (flg != st.alen - 1)
@@ -27,14 +41,9 @@ struct stacks	bubble_sort(t_stack_gen st)
 		{
 			if (st.c[i] >= st.c[i + 1])
 			{
-				if (st.c[i] == st.c[i + 1])
-				{
-					st.error = 1;
+				st = bubble_sort_aux(st, i);
+				if (st.error != 0)
 					return (st);
-				}
-				aux = st.c[i];
-				st.c[i] = st.c[i + 1];
-				st.c[i + 1] = aux;
 			}
 			else
 				flg++;

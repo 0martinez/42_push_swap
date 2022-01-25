@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/21 19:25:02 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:48:41 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,9 @@ int	main(int argc, char **argv)
 	st = sort_management(st);
 	if (st.error != 0 && st.error != 10 && st.error != 100)
 	{
-		//printf("%d", st.error);
 		st = free_management(st);
 		return (print_error());
 	}
-	//print_stack(st);
 	st = free_management(st);
-	//atexit(leaks);
 	return (0);
 }

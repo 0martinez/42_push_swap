@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:49:38 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/24 12:36:15 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:01:11 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ struct stacks	push_all_b(t_stack_gen st)
 	int	middle;
 
 	aux = 0;
-	if (check_if_a_ordered(st) == 0)
-	{
-		st.error = 10;
-		return (st);
-	}
 	while (st.alen != 2)
 	{
 		if (st.alen % 2 == 0)
