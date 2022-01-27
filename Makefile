@@ -6,35 +6,30 @@
 #    By: omartine <omartine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 16:02:43 by omartine          #+#    #+#              #
-#    Updated: 2022/01/24 16:19:51 by omartine         ###   ########.fr        #
+#    Updated: 2022/01/27 16:42:25 by omartine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-
-NAME = libpush_swap.a
-
-
-SRCS = push_swap.c movements/push.c movements/reverse.c movements/rotates.c \
+SRCS = 	push_swap.c movements/push.c movements/reverse.c movements/rotates.c \
 		movements/swaps.c sort_management/3_sort.c sort_management/100_sort.c \
 		sort_management/500_sort.c sort_management/sort_utils.c \
-		sort_management/sort_management.c push_swap.c to_be_free.c main_utils.c \
+		sort_management/sort_management.c to_be_free.c main_utils.c \
 		split.c
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+CC				= gcc
+RM				= rm -rf
+CFLAGS			= -Wall -Wextra -Werror
+MAKE			= make
+NAME			= push_swap
+all:			$(NAME)
 
-$(NAME): $(OBJS)
-			ar rcs $(NAME) $(OBJS)
-
+$(NAME):		$(OBJS)
+				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 clean:
-	rm -rf $(OBJS)
-
-fclean: clean
-	rm -rf $(NAME)
-
-re: fclean all
-
-.PHONY: all clean fclean bonus rebonus
+				$(RM) $(OBJS)
+fclean:			clean
+				$(RM) $(NAME)
+re:				fclean $(NAME)
+.PHONY:			all clean fclean re

@@ -6,16 +6,11 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/25 18:48:41 by omartine         ###   ########.fr       */
+/*   Updated: 2022/01/27 18:14:05 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	leaks(void)
-{
-	system("leaks -q a.out");
-}
 
 int	*to_stack(char **argv, t_stack_gen *st)
 {
@@ -25,6 +20,11 @@ int	*to_stack(char **argv, t_stack_gen *st)
 	int	*to_add;
 
 	j = 1;
+	if (argv[j][0] == 0)
+	{
+		st->error = 1;
+		return (0);
+	}
 	while (argv[j])
 	{
 		z = 0;
@@ -65,10 +65,16 @@ struct stacks	init_stack(void)
 	return (st);
 }
 
+void	leaks(void)
+{
+	system("leaks -q a.out");
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack_gen	st;
 
+	//atexit(leaks);
 	st = init_stack();
 	if (argc == 1)
 		return (0);
@@ -84,6 +90,8 @@ int	main(int argc, char **argv)
 		st = free_management(st);
 		return (print_error());
 	}
+	//print_stack(st);
 	st = free_management(st);
+	//atexit(leaks);
 	return (0);
 }
