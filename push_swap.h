@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/24 12:09:22 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:19:00 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				*add_to_stack(int *to_add, int *old_stack,
 					int add_length, t_stack_gen *st);
 
 char			**ft_split(char const *s, char c);
-size_t			wordcount(char const *s, int in, int i, char c);
+size_t			wordcount(char const *s, char c);
 void			*free_split(char **aux, int words);
 
 int				*to_stack(char **argv, t_stack_gen *st);

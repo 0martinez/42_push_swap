@@ -6,7 +6,7 @@
 #    By: omartine <omartine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 16:02:43 by omartine          #+#    #+#              #
-#    Updated: 2022/01/27 16:42:25 by omartine         ###   ########.fr        #
+#    Updated: 2022/02/10 18:48:03 by omartine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ all:			$(NAME)
 
 $(NAME):		$(OBJS)
 				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+#				mv $(NAME) ./bonus
 clean:
 				$(RM) $(OBJS)
 fclean:			clean

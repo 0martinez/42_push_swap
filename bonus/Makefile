@@ -6,14 +6,9 @@
 #    By: omartine <omartine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/24 12:21:40 by omartine          #+#    #+#              #
-#    Updated: 2022/01/27 16:08:42 by omartine         ###   ########.fr        #
+#    Updated: 2022/02/10 18:53:02 by omartine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-
-NAME = my_checker_bonus.a
 
 SRCS = my_checker.c movements_bonus/push.c movements_bonus/reverse.c \
 		movements_bonus/rotates.c movements_bonus/swaps.c sort_management_bonus/3_sort.c \
@@ -22,19 +17,22 @@ SRCS = my_checker.c movements_bonus/push.c movements_bonus/reverse.c \
 		to_be_free.c main_utils.c get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c my_checker_utils.c
 
+
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+CC				= gcc
+RM				= rm -rf
+CFLAGS			= -Wall -Wextra -Werror
+MAKE			= make
+NAME			= checker_omartine
+all:			$(NAME)
 
-$(NAME): $(OBJS)
-			ar rcs $(NAME) $(OBJS)
-
+$(NAME):		$(OBJS)
+				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+				mv $(NAME) ../
 clean:
-	rm -rf $(OBJS)
-
-fclean: clean
-	rm -rf $(NAME)
-
-re: fclean all
-
-.PHONY: all clean fclean bonus rebonus
+				$(RM) $(OBJS)
+fclean:			clean
+				$(RM) $(NAME)
+re:				fclean $(NAME)
+.PHONY:			all clean fclean re

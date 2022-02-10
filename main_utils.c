@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:22:16 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/25 17:21:32 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:19:06 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ int	*split_atoi(const char *s, t_stack_gen *st, int *z)
 	char	**str;
 
 	i = 0;
-	num_of_words = wordcount(s, 0, 0, ' ');
+	num_of_words = wordcount(s, ' ');
 	str = ft_split(s, ' ');
 	if (!str || num_of_words == 0)
 	{
 		st->error = 2;
+		free(str);
 		return (0);
 	}
 	new_stack = malloc(sizeof(int) * num_of_words);
