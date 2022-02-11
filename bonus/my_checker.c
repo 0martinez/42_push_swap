@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:16:14 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/25 18:48:30 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/11 14:02:00 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int	*to_stack(char **argv, t_stack_gen *st)
 	int	j;
 	int	z;
 	int	*to_add;
+	int	flg;
 
 	j = 1;
+	flg = 0;
 	while (argv[j])
 	{
 		z = 0;
@@ -32,6 +34,8 @@ int	*to_stack(char **argv, t_stack_gen *st)
 			return (0);
 		j++;
 	}
+	if (flg == 0)
+		st->error = 1;
 	return (stack);
 }
 
@@ -79,6 +83,7 @@ int	main(int argc, char **argv)
 	t_stack_gen	st;
 	char		*str;
 
+	atexit(leaks);
 	if (argc == 1)
 		return (0);
 	st = init_stack(argv);

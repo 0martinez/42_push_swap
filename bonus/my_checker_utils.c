@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 13:58:44 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/25 17:31:55 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/11 13:42:40 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,16 @@ int	ok_or_ko(t_stack_gen st, int flg)
 	if (flg == 0)
 	{
 		if (check_if_a_ordered(st) == 0)
-			write(1, "OK!", 3);
+			write(1, "OK!\n", 4);
 		else
-			write(1, "KO!", 3);
+			write(1, "KO!\n", 4);
 	}
 	else
 	{
 		if (check_if_a_ordered(st) == 0 && st.alen == st.clen)
-			write(1, "OK!", 3);
+			write(1, "OK!\n", 4);
 		else
-			write(1, "KO!", 3);
+			write(1, "KO!\n", 4);
 	}
 	return (0);
 }
