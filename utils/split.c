@@ -6,11 +6,11 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:53:09 by omartine          #+#    #+#             */
-/*   Updated: 2022/02/10 17:18:31 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:28:26 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 size_t	wordcount(char const *s, char c)
 {

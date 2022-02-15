@@ -6,44 +6,46 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:34 by omartine          #+#    #+#             */
-/*   Updated: 2022/02/11 13:39:20 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/15 17:58:22 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	*free_stack(int *to_add)
+{
+	if (to_add)
+		free(to_add);
+	return (0);
+}
+
 int	*to_stack(char **argv, t_stack_gen *st)
 {
-	int	*stack;
-	int	j;
-	int	z;
-	int	*to_add;
-	int	flg;
+	t_to_stack	rt;
 
-	j = 1;
-	flg = 0;
-	while (argv[j])
+	rt.j = 1;
+	rt.flg = 0;
+	while (argv[rt.j])
 	{
-		while (argv[j] && argv[j][0] == 0)
-			j++;
-		if (!argv[j])
+		while (argv[rt.j] && argv[rt.j][0] == 0)
+			rt.j++;
+		if (!argv[rt.j])
 			break ;
-		z = 0;
-		if (argv[j][0] != 0)
-			flg++;
-		to_add = split_atoi(argv[j], st, &z);
-		if (st->error != 0 || !to_add)
-			return (0);
-		stack = add_to_stack(to_add, stack, z, st);
-		if (to_add)
-			free(to_add);
+		rt.z = 0;
+		if (argv[rt.j][0] != 0)
+			rt.flg++;
+		rt.to_add = split_atoi(argv[rt.j], st, &rt.z);
+		if (st->error != 0 || !rt.to_add)
+			return (free_stack(rt.to_add));
+		rt.stack = add_to_stack(rt.to_add, rt.stack, rt.z, st);
+		free(rt.to_add);
 		if (st->error != 0)
 			return (0);
-		j++;
+		rt.j++;
 	}
-	if (flg == 0)
+	if (rt.flg == 0)
 		st->error = 1;
-	return (stack);
+	return (rt.stack);
 }
 
 struct stacks	init_stack(void)
@@ -66,7 +68,6 @@ int	main(int argc, char **argv)
 {
 	t_stack_gen	st;
 
-	//atexit(leaks);
 	st = init_stack();
 	if (argc == 1)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:16:14 by omartine          #+#    #+#             */
-/*   Updated: 2022/02/11 14:02:00 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:37:24 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,30 @@
 
 int	*to_stack(char **argv, t_stack_gen *st)
 {
-	int	*stack;
-	int	j;
-	int	z;
-	int	*to_add;
-	int	flg;
+	t_to_stack	rt;
 
-	j = 1;
-	flg = 0;
-	while (argv[j])
+	rt.j = 1;
+	while (argv[rt.j])
 	{
-		z = 0;
-		to_add = split_atoi(argv[j], st, &z);
-		if (st->error != 0 || !to_add)
+		if (argv[rt.j][0] == 0)
+			st->error = 1;
+		if (st->error != 0)
+			break ;
+		rt.z = 0;
+		rt.to_add = split_atoi(argv[rt.j], st, &rt.z);
+		if (st->error != 0 || !rt.to_add)
+		{
+			if (rt.to_add)
+				free(rt.to_add);
 			return (0);
-		stack = add_to_stack(to_add, stack, z, st);
-		free(to_add);
+		}
+		rt.stack = add_to_stack(rt.to_add, rt.stack, rt.z, st);
+		free(rt.to_add);
 		if (st->error != 0)
 			return (0);
-		j++;
+		rt.j++;
 	}
-	if (flg == 0)
-		st->error = 1;
-	return (stack);
+	return (rt.stack);
 }
 
 struct stacks	check_move(char *move_str, t_stack_gen st)
@@ -52,6 +53,7 @@ struct stacks	check_move(char *move_str, t_stack_gen st)
 		else
 			st = rotate_checker(move_str, st);
 	}
+	free(move_str);
 	return (st);
 }
 
@@ -81,28 +83,28 @@ int	check_if_error(char *str)
 int	main(int argc, char **argv)
 {
 	t_stack_gen	st;
-	char		*str;
 
-	atexit(leaks);
 	if (argc == 1)
 		return (0);
 	st = init_stack(argv);
 	if (st.error != 0)
 		return (print_error());
-	str = get_next_line(STDIN_FILENO);
-	if (str == NULL)
+	st.str = get_next_line(STDIN_FILENO);
+	if (st.str == NULL)
 		return (ok_or_ko(st, 0));
-	if (check_if_error(str) == 0)
-		return (print_error());
-	while (str != 0)
+	if (check_if_error(st.str) == 0)
 	{
-		st = check_move(str, st);
-		free(str);
+		free(st.str);
+		return (print_error());
+	}
+	while (st.str != 0)
+	{
+		st = check_move(st.str, st);
 		if (st.error != 0)
 			return (print_error());
-		str = get_next_line(STDIN_FILENO);
+		st.str = get_next_line(STDIN_FILENO);
 	}
 	ok_or_ko(st, 1);
-	st = free_management(st, str);
+	st = free_management(st, st.str);
 	return (0);
 }

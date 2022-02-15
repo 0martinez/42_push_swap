@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:20:48 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/24 16:35:12 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/15 17:07:21 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ struct stacks	reverse_b(t_stack_gen st)
 	}
 	st.b[0] = aux;
 	st.mvs++;
-	write(1, "rrb\n", 4);
 	return (st);
 }
 

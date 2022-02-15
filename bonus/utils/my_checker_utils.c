@@ -6,11 +6,11 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 13:58:44 by omartine          #+#    #+#             */
-/*   Updated: 2022/02/11 13:42:40 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:30:28 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus.h"
+#include "../bonus.h"
 
 struct stacks	push_checker(char *str, t_stack_gen st)
 {

@@ -6,26 +6,31 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:53:09 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/24 12:36:38 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:31:34 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus.h"
+#include "../bonus.h"
 
-size_t	wordcount(char const *s, int in, int i, char c)
+size_t	wordcount(char const *s, char c)
 {
-	while (s[in] != 0)
+	int	words;
+	int	i;
+
+	i = 0;
+	words = 0;
+	while (s[i] != 0)
 	{
-		if (s[in] == c)
-			in++;
+		if (s[i] == c)
+			i++;
 		else
 		{
-			i++;
-			while (s[in] != c && s[in] != 0)
-				in++;
+			words++;
+			while (s[i] != c && s[i] != 0)
+				i++;
 		}
 	}
-	return (i);
+	return (words);
 }
 
 int	position(char const *s, int pos, char c, int flg)
@@ -85,7 +90,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (0);
-	count = wordcount(s, in, i, c);
+	count = wordcount(s, c);
 	aux = (char **) malloc(sizeof(char *) * (count + 1));
 	if (!aux)
 		return (0);

@@ -6,11 +6,11 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 13:22:16 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/27 15:52:50 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:27:56 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus.h"
+#include "../push_swap.h"
 
 int	print_error(void)
 {
@@ -53,19 +53,18 @@ int	*split_atoi(const char *s, t_stack_gen *st, int *z)
 	char	**str;
 
 	i = 0;
-	num_of_words = wordcount(s, 0, 0, ' ');
+	num_of_words = wordcount(s, ' ');
 	str = ft_split(s, ' ');
 	if (!str || num_of_words == 0)
-	{
-		st->error = 2;
-		return (0);
-	}
+		return (first_split_error(str, num_of_words, st));
 	new_stack = malloc(sizeof(int) * num_of_words);
+	if (!new_stack)
+		return (0);
 	while (i < num_of_words)
 	{
 		new_stack[i] = ft_atoi(str[i], st);
 		if (st->error != 0)
-			return (0);
+			return (second_split_error(str, num_of_words, new_stack));
 		i++;
 	}
 	st->alen += num_of_words;

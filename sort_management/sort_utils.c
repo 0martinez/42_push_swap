@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:44:50 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/25 17:49:46 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:15:52 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static struct stacks	bubble_sort_aux(t_stack_gen st, int i)
 
 	if (st.c[i] == st.c[i + 1])
 	{
-		st.error = 1;
+		st.error = 3;
 		return (st);
 	}
 	aux = st.c[i];

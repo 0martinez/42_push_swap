@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
-/*   Updated: 2022/01/25 17:33:08 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:36:41 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,18 @@ typedef struct stacks
 	int		biggest_length;
 	int		mvs;
 	int		error;
+	char	*str;
 
 }	t_stack_gen;
+
+typedef struct to_stack
+{
+	int	*stack;
+	int	j;
+	int	z;
+	int	*to_add;
+
+}	t_to_stack;
 
 int				print_error(void);
 
@@ -58,6 +68,8 @@ int				check_if_lower_than_middle(t_stack_gen st, int middle);
 int				search_num_in_b(t_stack_gen st, int num_to_push);
 
 struct stacks	free_management(t_stack_gen st, char *str);
+int				*first_split_error(char **str, int num_words, t_stack_gen *st);
+int				*second_split_error(char **str, int num_words, int *stack);
 
 int				*split_atoi(const char *str, t_stack_gen *st, int *z);
 int				ft_atoi(const char *str, t_stack_gen *st);
@@ -65,7 +77,7 @@ int				*add_to_stack(int *to_add, int *old_stack,
 					int add_length, t_stack_gen *st);
 
 char			**ft_split(char const *s, char c);
-size_t			wordcount(char const *s, int in, int i, char c);
+size_t			wordcount(char const *s, char c);
 void			*free_split(char **aux, int words);
 
 int				*to_stack(char **argv, t_stack_gen *st);

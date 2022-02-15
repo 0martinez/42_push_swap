@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:23:20 by omartine          #+#    #+#             */
-/*   Updated: 2022/02/10 17:03:46 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:16:20 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ struct stacks	asign_c(t_stack_gen st)
 	st.c = (int *) malloc(sizeof(int) * st.alen);
 	if (!st.c)
 	{
-		st.error = 3;
+		st.error = 2;
 		return (st);
 	}
 	while (i < st.alen)
