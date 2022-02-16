@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 12:23:28 by omartine          #+#    #+#             */
-/*   Updated: 2022/02/15 19:36:41 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:32:01 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ struct stacks	reverse_checker(char *str, t_stack_gen st);
 int				ok_or_ko(t_stack_gen st, int flg);
 
 void			leaks(void);
+
+int				*check_if_dobled(t_stack_gen st);
 
 #endif

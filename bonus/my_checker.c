@@ -6,7 +6,7 @@
 /*   By: omartine <omartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 12:16:14 by omartine          #+#    #+#             */
-/*   Updated: 2022/02/15 19:37:24 by omartine         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:35:00 by omartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ int	main(int argc, char **argv)
 	st = init_stack(argv);
 	if (st.error != 0)
 		return (print_error());
+	st.c = check_if_dobled(st);
+	if (st.error != 0)
+	{
+
+	}
 	st.str = get_next_line(STDIN_FILENO);
 	if (st.str == NULL)
 		return (ok_or_ko(st, 0));
